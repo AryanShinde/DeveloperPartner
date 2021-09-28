@@ -2,6 +2,7 @@ const express=require("express");
 const {check, validationResult} =require("express-validator");
 const gravatar=require("gravatar");
 const jwt=require("jsonwebtoken");
+const config=require("config");
 
 const bcrypt=require("bcryptjs");
 
@@ -23,8 +24,8 @@ router.post("/",[
         return;
     }
 
-    const {name,email,password}=req.body;
 try{
+    const {name,email,password}=req.body;
     //check if user exist
     let user=await User.findOne({email});
     if(user){
@@ -39,7 +40,7 @@ try{
     })
 
     //if not then register user
-    user=new User({
+    user=await new User({
         name,
         email,
         password,
@@ -48,25 +49,28 @@ try{
     //encryt the password
     const salt= await bcrypt.genSalt(10);
     user.password=await bcrypt.hash(password,salt);
-    res.send("user registered");
 
     await user.save()
     
 
     //JWT Token
-
-
-
-
+    const payload={
+        user:{
+            id:user.id,
+        }
+    }
+    jwt.sign(
+        payload,
+        config.get("jwtToken"),
+        {expiresIn:3600000},
+        (err,token)=>{
+            if(err){throw err;}
+            else {res.json({token});}
+        })
 }
 catch(err){
     return res.status(500).json({msg:[{error:err.message}]})
 }
-
-
-
-
-    res.send(req.body);
 })
 
 module.exports=router;
