@@ -10,7 +10,7 @@ const {check,validationResult}=require("express-validator");
 //@route    "/api/auth"
 //@desc     "auth route"
 //@access   "public"    
-router.get("/",auth,async(req,res)=>{
+router.get("/getCurrentUser",auth,async(req,res)=>{
     try {
         const user=await User.findById(req.user.id).select("-password");
         res.json(user);
@@ -19,7 +19,7 @@ router.get("/",auth,async(req,res)=>{
     }
 })
 
-//@route    "/api/user"
+//@route    "/api/auth"
 //@desc     "login user"
 //@access   "public"    
 router.post("/",[
