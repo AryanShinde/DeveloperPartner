@@ -22,6 +22,6 @@ app.use("/api/profiles", require("./routes/api/profiles"))
 app.use("/api/posts", require("./routes/api/posts"))
 
 
-const PORT=process.env.PORT || 5004;
+const PORT=process.env.PORT || 5008;
 
 app.listen(PORT,()=> console.log(`port running on ${PORT}`));
