@@ -91,7 +91,6 @@ router.post("/", [auth, [
                 {$set: profileFields},
                 {new: true}
                 );
-                console.log("work?")
             return res.send(profile);
         }
         //if profile not found then make it
