@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import home from "../images/home.svg"
 
@@ -10,8 +11,8 @@ const Home=()=>{
                 <h3 className="desc">This website is for finding partners and colaborating with them and make exciting porjects
                 </h3>
                 <div className="login">
-                    <a className="b-1" href="http://localhost:5000">Log in</a>
-                    <a href="http://localhost:5000">Sign up</a>
+                    <Link className="b-1" to="/login">Log in</Link>
+                    <Link to="/signup">Sign up</Link>
                 </div>
             </div>
         </HomeImg>

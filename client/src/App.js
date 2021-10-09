@@ -1,13 +1,26 @@
 import './App.css';
 import "./styles/app.scss"
 import "./pages/LandingPage";
+import Nav from "./components/Nav";
 import LandingPage from './pages/LandingPage';
+import Login from "./pages/Login";
+import SignUp from './pages/Signup';
+
+//router
+import {Route, Switch} from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <LandingPage/>
+        <Nav/>
+        <Route exact path="/" component={LandingPage} />
+        <section className="container">
+          <Switch>
+            <Route path="/login" component={Login}/>
+            <Route path="/signup" component={SignUp} />
+          </Switch>
+        </section>
     </div>
   );
 }

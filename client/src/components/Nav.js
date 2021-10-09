@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
+
 const Nav=()=>{
     return (
         <NavStyled>
             <div className="left">Dev Partner</div>
             <div className="right">
                 <ul>
-                    <li>Home</li>
+                    <li><Link to="/">Home</Link></li>
                     <li>Developers</li>
-                    <li>Login</li>
-                    <li>Signup</li>
+                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/signup">Signup</Link></li>
                 </ul>
             </div>
         </NavStyled>
@@ -34,6 +36,10 @@ const NavStyled=styled.div`
             align-items: center;
             li{
                 margin:0rem 1rem;
+                a{
+                    color: white;
+                    text-decoration: none;
+                }
             }
         }
     `
