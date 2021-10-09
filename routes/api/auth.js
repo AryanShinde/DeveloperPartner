@@ -24,7 +24,7 @@ router.get("/getCurrentUser",auth,async(req,res)=>{
 //@access   "public"    
 router.post("/",[
     check("email","please enter a valid name").isEmail(),
-    check("password","please enter atleast 6 char").exists(),
+    check("password","please enter atleast 6 char").exists().isLength({min:6}),
 ], async(req,res)=>{
     const errors=validationResult(req);
     if(!errors.isEmpty()){
