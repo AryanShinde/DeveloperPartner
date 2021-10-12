@@ -16,7 +16,7 @@ const router=express.Router();
 router.post("/",[
     check("name","please enter a valid name").not().isEmpty(),
     check("email","please enter a valid name").isEmail(),
-    check("password","please enter atleast 6 char").isLength({min:8}),
+    check("password","please enter atleast 6 char").isLength({min:6}),
 ], async(req,res)=>{
     const errors=validationResult(req);
     if(!errors.isEmpty()){

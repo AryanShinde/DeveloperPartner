@@ -39,7 +39,7 @@ router.post("/",[auth,[
 //@route    "/api/posts"
 //@desc     "get all posts"
 //@access   "private"
-router.get("/",[auth],async (req,res)=>{
+router.get("/",auth,async (req,res)=>{
     try {
         const posts=await Post.find().sort({date:-1});
         res.send(posts);

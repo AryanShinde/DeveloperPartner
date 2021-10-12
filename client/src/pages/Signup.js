@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
 
 const SignUp=()=>{
 
@@ -14,12 +15,14 @@ const SignUp=()=>{
         setFormData({...formData,[e.target.name]:e.target.value});
         
     }
-    const submitHandler=(e)=>{
+    const submitHandler= async (e)=>{
         e.preventDefault();
         if(formData.password!==formData.password2){
             return console.log("password did not match")
         }
-        console.log(formData);
+        else{
+        console.log("success");
+        }
     }
 
     return (
@@ -42,6 +45,7 @@ const SignUp=()=>{
                 <div className="submit">
                     <button onChange={(e)=>inputHandler(e)} type="submit">Sign Up</button>
                 </div>
+                <h4>Already have an account? <span><Link to="/login">Login</Link></span></h4>
             </form>
         </SignUpStyle>
     )
@@ -54,6 +58,7 @@ top:55%;
 left:50%;
 transform: translate(-50%,-50%);
 background-color: #EEEFF7;
+border-bottom: 8px solid #6470C4;
 padding: 2rem;
 border-radius: 1rem;
 @media screen and (max-width:680px){
@@ -64,12 +69,12 @@ border-radius: 1rem;
         padding: 0.4rem;
         border-radius: 0.4rem;
         border: none;
+        box-shadow: 1px 1px 2px #6470C4;
     }
     margin:1rem;
 }
 h2{
     color: #6470C4;
-    padding: 0.4rem;
 }
 button{
     background-color: #6470C4;
@@ -86,6 +91,13 @@ button{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    h4{
+        margin: 1rem;
+        span a{
+            text-decoration: none;
+            color: #6470C4;
+        }
     }
 
 `
