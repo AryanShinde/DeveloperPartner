@@ -3,7 +3,13 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
+//actions
+import SetAlert  from "../actions/setAlert";
+import { useDispatch } from "react-redux";
+
 const SignUp=()=>{
+
+    const dispatch=useDispatch();
 
     const [formData,setFormData]=useState({
         name: "",
@@ -18,7 +24,7 @@ const SignUp=()=>{
     const submitHandler= async (e)=>{
         e.preventDefault();
         if(formData.password!==formData.password2){
-            return console.log("password did not match")
+            dispatch(SetAlert("password did not match","danger"));
         }
         else{
         console.log("success");
@@ -50,6 +56,9 @@ const SignUp=()=>{
         </SignUpStyle>
     )
 }
+
+
+
 const SignUpStyle=styled.div`
 width:40%;
 margin: auto;
