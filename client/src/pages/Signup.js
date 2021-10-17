@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 //actions
 import SetAlert  from "../actions/setAlert";
 import { useDispatch } from "react-redux";
+import registerUser from "../actions/auth";
 
 const SignUp=()=>{
 
@@ -17,6 +18,7 @@ const SignUp=()=>{
         password: "",
         password2: ""
     })
+    const {name,email,password}=formData;
     const inputHandler=(e)=>{
         setFormData({...formData,[e.target.name]:e.target.value});
         
@@ -27,7 +29,7 @@ const SignUp=()=>{
             dispatch(SetAlert("password did not match","danger"));
         }
         else{
-        console.log("success");
+            dispatch(registerUser({name,email,password}));
         }
     }
 
@@ -37,16 +39,16 @@ const SignUp=()=>{
                 <h2>Sign up</h2>
                 <h4>Create an account</h4>
                 <div className="name">
-                    <input onChange={(e)=>inputHandler(e)} type="text" placeholder="Name" id="name" name="name" required/>
+                    <input onChange={(e)=>inputHandler(e)} type="text" placeholder="Name" id="name" name="name" />
                 </div>
                 <div className="email">
-                    <input onChange={(e)=>inputHandler(e)} type="email" placeholder="email" id="email" name="email" required/>
+                    <input onChange={(e)=>inputHandler(e)} type="" placeholder="email" id="email" name="email" />
                 </div>
                 <div className="password">
-                    <input onChange={(e)=>inputHandler(e)} type="password" placeholder="password" id="password" name="password" required/>
+                    <input onChange={(e)=>inputHandler(e)} type="password" placeholder="password" id="password" name="password" />
                 </div>
                 <div className="password2">
-                    <input onChange={(e)=>inputHandler(e)} type="password" placeholder="Confirm Password" id="password2" name="password2" required/>
+                    <input onChange={(e)=>inputHandler(e)} type="password" placeholder="Confirm Password" id="password2" name="password2" />
                 </div>
                 <div className="submit">
                     <button onChange={(e)=>inputHandler(e)} type="submit">Sign Up</button>

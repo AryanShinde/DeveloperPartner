@@ -1,0 +1,65 @@
+import axios from "axios";
+import SetAlert from "./setAlert";
+import {setToken} from "../utils/setToken";
+export const loadUser=()=> async (dispatch)=>{
+    if(localStorage.token){
+    setToken(localStorage.token);
+    }
+    else{
+        dispatch({
+            type: "AUTH_ERROR"
+        })
+    }
+    try {
+        const res=await axios.get("/api/auth");
+        if(res.data.mg==="authorization denied"){
+            dispatch({
+                type:"AUTH_ERROR"
+            })
+        }
+        dispatch({
+            type: "USER_LOADED",
+            payload:res.data
+        })
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type:"AUTH_ERROR"
+        })
+    }
+
+}
+
+
+
+
+const registerUser=({name,email,password})=>async (dispatch)=>{
+    const config={
+        headers:{
+            "content-type": "application/json"
+        }
+    }
+
+    const body=JSON.stringify({name,email,password});
+    try{
+    const res=await axios.post("/api/user",body,config);
+    localStorage.setItem("token",res.data.token);
+    dispatch({
+        type: "REGISTRATION_DONE",
+        payload: res
+    })
+    }
+    catch(error){
+        const errors=error.response.data.errors;
+        if(errors){
+        errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
+        }
+        else if(error){
+        dispatch(SetAlert(error.response.data.error,"danger"));
+        }
+        dispatch({
+            type:"REGISTRATION_ERROR"
+        })
+    }
+}
+export default registerUser;

@@ -20,7 +20,7 @@ const SetAlert=(msg,alertType)=>(dispatch)=>{
             alertType
             }
         });
-    },2000)
+    },2800)
 }
 
 export default SetAlert;

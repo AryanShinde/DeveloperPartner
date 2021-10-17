@@ -1,3 +1,4 @@
+import React,{useEffect} from "react";
 import './App.css';
 import "./styles/app.scss"
 import "./pages/LandingPage";
@@ -7,12 +8,25 @@ import Login from "./pages/Login";
 import SignUp from './pages/Signup';
 import Alert from './components/alert';
 
+import { loadUser } from './actions/auth';
+
 //router
 import {Route, Switch} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {setToken} from "./utils/setToken";
 
-
+if(localStorage.token){
+  setToken(localStorage.token);
+}
 
 function App() {
+
+  const dispatch=useDispatch();
+
+  useEffect(()=>{
+    dispatch(loadUser());
+  },[dispatch])
+
   return (
     <div className="App">
         <Nav/>
