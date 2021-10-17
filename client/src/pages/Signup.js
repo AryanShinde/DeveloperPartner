@@ -1,16 +1,19 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 
 //actions
 import SetAlert  from "../actions/setAlert";
 import { useDispatch } from "react-redux";
 import registerUser from "../actions/auth";
+import { useSelector } from "react-redux";
 
 const SignUp=()=>{
 
     const dispatch=useDispatch();
+    const isAuthenticated=useSelector(store=>store.auth.isAuthenticated);
+    
 
     const [formData,setFormData]=useState({
         name: "",
@@ -32,7 +35,9 @@ const SignUp=()=>{
             dispatch(registerUser({name,email,password}));
         }
     }
-
+    if(isAuthenticated){
+        return <Redirect to="/dashboard" />
+        }
     return (
         <SignUpStyle>
             <form onSubmit={e=>submitHandler(e)}>

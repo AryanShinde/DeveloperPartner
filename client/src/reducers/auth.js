@@ -16,18 +16,21 @@ const auth=(state=initialState,action)=>{
             }
 
         case "REGISTRATION_DONE":
+        case "LOGIN_DONE":
             return {
                 ...state,
                 token:action.payload.data.token,
                 isLoading:false
             }
         case "REGISTRATION_ERROR":
+        case "LOGIN_ERROR":
         case "AUTH_ERROR":
             return {
                 ...state,
                 token:null,
                 isAuthenticated:false,
-                isLoading:false
+                isLoading:false,
+                user: null
             }
         default:
             return state;

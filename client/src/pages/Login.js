@@ -1,9 +1,16 @@
 import React, {useState} from "react";
+import { useDispatch,useSelector } from "react-redux";
 import styled from "styled-components";
+import { loginUser } from "../actions/auth";
 
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 
 const Login=()=>{
+
+    const dispatch=useDispatch();
+    const isAuthenticated=useSelector(store=>store.auth.isAuthenticated);
+   
+
 
     const [formData,setFormData]=useState({
         email: "",
@@ -13,10 +20,15 @@ const Login=()=>{
         setFormData({...formData,[e.target.name]:e.target.value});
         
     }
+    const {email,password}=formData;
     const submitHandler= async (e)=>{
         e.preventDefault();
-        console.log("success");
+        dispatch(loginUser({email,password}));
     }
+
+    if(isAuthenticated){
+        return <Redirect to="/dashboard" />
+     }
 
     return (
         <SignUpStyle>

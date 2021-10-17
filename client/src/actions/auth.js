@@ -2,7 +2,7 @@ import axios from "axios";
 import SetAlert from "./setAlert";
 import {setToken} from "../utils/setToken";
 export const loadUser=()=> async (dispatch)=>{
-    if(localStorage.token){
+    if(localStorage.getItem("token")){
     setToken(localStorage.token);
     }
     else{
@@ -17,10 +17,12 @@ export const loadUser=()=> async (dispatch)=>{
                 type:"AUTH_ERROR"
             })
         }
+        else{
         dispatch({
             type: "USER_LOADED",
             payload:res.data
         })
+    }
     } catch (error) {
         console.log(error);
         dispatch({
@@ -48,6 +50,7 @@ const registerUser=({name,email,password})=>async (dispatch)=>{
         type: "REGISTRATION_DONE",
         payload: res
     })
+    dispatch(loadUser());
     }
     catch(error){
         const errors=error.response.data.errors;
@@ -62,4 +65,36 @@ const registerUser=({name,email,password})=>async (dispatch)=>{
         })
     }
 }
+
+export const loginUser=({email,password})=>async (dispatch)=>{
+    const config={
+        headers:{
+            "content-type": "application/json"
+        }
+    }
+
+    const body=JSON.stringify({email,password});
+    try{
+    const res=await axios.post("/api/auth",body,config);
+    localStorage.setItem("token",res.data.token);
+    dispatch({
+        type: "LOGIN_DONE",
+        payload: res
+    })
+    dispatch(loadUser());
+    }
+    catch(error){
+        const errors=error.response.data.errors;
+        if(errors){
+        errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
+        }
+        else if(error){
+        dispatch(SetAlert(error.response.data.error,"danger"));
+        }
+        dispatch({
+            type:"LOGIN_ERROR"
+        })
+    }
+}
+
 export default registerUser;
