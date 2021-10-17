@@ -2,18 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import home from "../images/home.svg"
+import { useSelector } from "react-redux";
 
 const Home=()=>{
+
+    const authState=useSelector((state)=>state.auth);
+    const isAuthenticated=authState.isAuthenticated;
+    const loading=authState.isLoading;
+
     return (
         <HomeImg>
             <img src={home} alt="" />
             <div className="right">
                 <h3 className="desc">This website is for finding partners and colaborating with them and make exciting porjects
                 </h3>
-                <div className="login">
+                {!loading && !isAuthenticated && <div className="login">
                     <Link className="b-1" to="/login">Log in</Link>
                     <Link to="/signup">Sign up</Link>
-                </div>
+                </div>}
             </div>
         </HomeImg>
     );

@@ -25,6 +25,8 @@ const auth=(state=initialState,action)=>{
         case "REGISTRATION_ERROR":
         case "LOGIN_ERROR":
         case "AUTH_ERROR":
+        case "LOGOUT":
+        localStorage.removeItem("token");
             return {
                 ...state,
                 token:null,

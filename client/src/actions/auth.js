@@ -88,13 +88,21 @@ export const loginUser=({email,password})=>async (dispatch)=>{
         if(errors){
         errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
         }
-        else if(error){
+        else if(error.response.data.error){
         dispatch(SetAlert(error.response.data.error,"danger"));
+        }else if(error.response.data.msg){
+            dispatch(SetAlert(error.response.data.msg,"danger"));
         }
         dispatch({
             type:"LOGIN_ERROR"
         })
     }
 }
+
+export const logout=()=>(dispatch)=>{
+    dispatch({
+        type:"LOGOUT",
+    })
+} 
 
 export default registerUser;

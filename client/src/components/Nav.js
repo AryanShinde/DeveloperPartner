@@ -1,19 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../actions/auth";
+
 import {Link} from "react-router-dom";
 
 const Nav=()=>{
+
+    const authState=useSelector((state)=>state.auth);
+    const isAuthenticated=authState.isAuthenticated;
+    const loading=authState.isLoading;
+    const dispatch=useDispatch();
+
+    const logged=(
+        <ul>
+            <li><Link to="/">Home</Link></li>
+            <li>Developers</li>
+            <li><Link onClick={()=>dispatch(logout())} to="/">Logout</Link></li>
+        </ul>
+    )
+    const guest=(
+        <ul>
+            <li><Link to="/">Home</Link></li>
+            <li>Developers</li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+        </ul>
+    )
+
     return (
         <NavStyled>
             <div className="left">Dev Partner</div>
-            <div className="right">
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li>Developers</li>
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/signup">Signup</Link></li>
-                </ul>
+            { !loading && (<div className="right">
+                {isAuthenticated ? logged: guest}
             </div>
+            )}
         </NavStyled>
     );
 
