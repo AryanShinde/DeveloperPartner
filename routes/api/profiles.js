@@ -12,7 +12,7 @@ const {
 } = require("express-validator");
 
 
-//@route    "/api/profile/me"
+//@route    "/api/profiles/me"
 //@desc     "get user profile"
 //@access   "private"    
 router.get("/me", auth, async (req, res) => {
@@ -107,7 +107,7 @@ router.post("/", [auth, [
 
 
 
-//@route    "/api/profile"
+//@route    "/api/profiles"
 //@desc     "get all profile"
 //@access   "public"
 router.get("/",async (req,res)=>{
