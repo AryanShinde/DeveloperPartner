@@ -12,8 +12,12 @@ import { loadUser } from './actions/auth';
 
 //router
 import {Route, Switch} from "react-router-dom";
+import PrivateRouter from "./routing/PrivateRouter";
+
 import { useDispatch } from "react-redux";
 import {setToken} from "./utils/setToken";
+import Dasboard from "./components/Dasboard";
+
 
 if(localStorage.token){
   setToken(localStorage.token);
@@ -36,6 +40,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={SignUp} />
+            <PrivateRouter path="/dashboard" component={Dasboard} />
           </Switch>
         </section>
     </div>
