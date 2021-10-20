@@ -90,7 +90,7 @@ export const loginUser=({email,password})=>async (dispatch)=>{
         }
         else if(error.response.data.error){
         dispatch(SetAlert(error.response.data.error,"danger"));
-        }else if(error.response.data.msg){
+        }else if(error.response.data.msg && !Array.isArray(error.response.data.msg)){
             dispatch(SetAlert(error.response.data.msg,"danger"));
         }
         dispatch({

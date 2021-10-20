@@ -18,6 +18,7 @@ const Nav=()=>{
             <li><Link to="/">Home</Link></li>
             <li>Developers</li>
             <li><Link onClick={()=>dispatch(logout())} to="/">Logout</Link></li>
+            <li><Link to="/dashboard">Dashboard</Link></li>
         </ul>
     )
     const guest=(

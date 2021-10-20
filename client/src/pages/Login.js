@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { loginUser } from "../actions/auth";
 
 import { Link,Redirect } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Login=()=>{
 
     const dispatch=useDispatch();
     const isAuthenticated=useSelector(store=>store.auth.isAuthenticated);
+    const isLoading=useSelector((store)=>store.auth.isLoading);
    
 
 
@@ -27,9 +29,10 @@ const Login=()=>{
     }
 
     if(isAuthenticated){
-        return <Redirect to="/dashboard" />
-     }
-
+        return <Redirect to="/dashboard" />  
+    }else if(isLoading){
+        return <Loading/>
+    }
     return (
         <SignUpStyle>
             <form onSubmit={e=>submitHandler(e)}>
