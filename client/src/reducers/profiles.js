@@ -20,6 +20,15 @@ const profiles=(state=initialState,action)=>{
                 ...state,
                 errors:action.payload
             }
+        case "LOGOUT":
+            return {
+                ...state,
+                profile:null,
+                profiles:[],
+                repos:[],
+                isLoading:true,
+                errors:{}
+            }
         default:
             return state;
     }

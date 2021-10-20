@@ -30,9 +30,11 @@ const Nav=()=>{
         </ul>
     )
 
+    const tag="<Dev Partner/>";
     return (
+        
         <NavStyled>
-            <div className="left">Dev Partner</div>
+            <div className="left"><Link to="/" >{tag}</Link></div>
             { !loading && (<div className="right">
                 {isAuthenticated ? logged: guest}
             </div>
@@ -52,6 +54,10 @@ const NavStyled=styled.div`
         z-index: 2;
         top:0;
         border-radius: 0rem 0rem 1rem 1rem;
+        a{
+            text-decoration: none;
+            color:white;
+        }
         ul{
             list-style: none;
             display: flex;

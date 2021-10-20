@@ -20,6 +20,7 @@ const Dashboard=()=>{
     const user=useSelector((store)=>store.auth.user);
     const userProfile=useSelector(store=>store.profiles.profile);
 
+    
     const NoProfile=(
         <div className="NoProfile">
             <h4>you do not have a profile yet</h4>
@@ -36,7 +37,8 @@ const Dashboard=()=>{
         <>
         {!isAuthenticated ? <Loading/>:
          <DashboardStyle>
-                <h2>Dashboard</h2>
+                <h1>Dashboard</h1>
+                <div className="line"></div>
                 <div className="username">
                 <ImUser className="user"/> 
                 <p> welcome, {user.name}</p>
@@ -55,11 +57,18 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 flex-direction: column;
+.line{
+    margin-bottom: 0.4rem;
+    background-color: #4c4c78;
+    width:40rem;
+    height: 0.4rem;
+    border-radius: 0rem 0rem 1rem 1rem;
+}
 .user{
     font-size:2rem;
     margin: 0rem 0.4rem 0rem 0rem;
 }
-h2{
+h1{
     margin: 1rem 0rem;
     color:#4c4c78;
 }
