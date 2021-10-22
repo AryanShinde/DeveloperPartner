@@ -56,7 +56,8 @@ router.post("/", [auth, [
         youtube,
         twitter,
         facebook,
-        linkedin
+        linkedin,
+        instagram
     } = req.body;
     console.log(twitter);
 
@@ -76,6 +77,8 @@ router.post("/", [auth, [
     if (twitter) profileFields.Socials.twitter = twitter;
     if (facebook) profileFields.Socials.facebook = facebook;
     if (linkedin) profileFields.Socials.linkedin = linkedin;
+    if (instagram) profileFields.Socials.linkedin = instagram;
+
 
     //make this object into a Profile 
     try {

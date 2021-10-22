@@ -17,6 +17,7 @@ import PrivateRouter from "./routing/PrivateRouter";
 import { useDispatch } from "react-redux";
 import {setToken} from "./utils/setToken";
 import Dasboard from "./components/Dasboard";
+import CreateProfilePage from "./pages/CreateProfile";
 
 
 if(localStorage.token){
@@ -40,7 +41,8 @@ function App() {
           <Switch>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={SignUp} />
-            <PrivateRouter path="/dashboard" component={Dasboard} />
+            <PrivateRouter exact path="/dashboard" component={Dasboard} />
+            <PrivateRouter exact path="/create-profile" component={CreateProfilePage}/>
           </Switch>
         </section>
     </div>

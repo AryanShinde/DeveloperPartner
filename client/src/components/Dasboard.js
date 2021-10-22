@@ -69,7 +69,7 @@ flex-direction: column;
     margin: 0rem 0.4rem 0rem 0rem;
 }
 h1{
-    margin: 1rem 0rem;
+    margin: 2rem 0rem 1rem 0rem;
     color:#4c4c78;
 }
 .username{

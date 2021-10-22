@@ -1,6 +1,8 @@
 .container{
-    margin-left: 8rem;
-    margin-top:1rem;
+    margin-left: 18rem;
+    @media screen and (max-width:768px) {
+        margin-left: 1rem;
+    }
 }
 
 @import "./alert.scss";
