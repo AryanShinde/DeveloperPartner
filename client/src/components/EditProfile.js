@@ -1,14 +1,17 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { createProfile } from "../actions/profile";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 //icons
 import{ BsTwitter,BsInstagram,BsLinkedin,BsYoutube,BsFacebook } from "react-icons/bs";
 
-const CreateProfile=()=>{
+const EditProfile=()=>{
+
+const profile=useSelector((store)=>store.profiles.profile);
+
 const history=useHistory();
 const dispatch=useDispatch();
 const [displaySocialInputs,toggleSocialInputs]=useState(false);
@@ -42,6 +45,7 @@ const {
     instagram
 }=formData;
 
+
 const onChange=(e)=>{
     setFormData({...formData,
         [e.target.name]:e.target.value
@@ -49,10 +53,30 @@ const onChange=(e)=>{
 }
 const onSubmit=(e)=>{
   e.preventDefault();
-  console.log(formData);
-  dispatch(createProfile(formData,history));
+  dispatch(createProfile(formData,history,true));
 
 }
+
+useEffect(()=>{
+    setFormData({
+        ...formData,
+        status:profile.status,
+        company:profile.company,
+        website:profile.website,
+        location:profile.location,
+        githubusername:profile.githubusername,
+        bio:profile.bio,
+        skills:profile.skills.join(","),
+        youtube:profile.social.youtube,
+        instagram:profile.social.instagram,
+        twitter:profile.social.twitter,
+        facebook:profile.social.facebook,
+        linkedin:profile.social.linkedin,
+    }
+        )
+},[])
+
+
     return(
         <ProfileStyled>
             <h1>Create your Profile</h1>
@@ -285,4 +309,4 @@ h1{
     }
     
 `
-export default CreateProfile;
+export default EditProfile;

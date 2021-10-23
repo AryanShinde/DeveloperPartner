@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import {setToken} from "./utils/setToken";
 import Dasboard from "./components/Dasboard";
 import CreateProfilePage from "./pages/CreateProfile";
-
+import EditProfile from "./components/EditProfile";
 
 if(localStorage.token){
   setToken(localStorage.token);
@@ -43,6 +43,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <PrivateRouter exact path="/dashboard" component={Dasboard} />
             <PrivateRouter exact path="/create-profile" component={CreateProfilePage}/>
+            <PrivateRouter exact path="/edit-profile" component={EditProfile} />
           </Switch>
         </section>
     </div>

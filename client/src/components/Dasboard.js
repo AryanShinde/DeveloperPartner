@@ -9,6 +9,9 @@ import {Link} from "react-router-dom";
 
 //icons
 import {ImUser} from "react-icons/im";
+import {AiFillEdit}from "react-icons/ai";
+import {FaGraduationCap} from "react-icons/fa";
+import {MdWork} from "react-icons/md";
 
 const Dashboard=()=>{
     const dispatch=useDispatch();
@@ -28,8 +31,17 @@ const Dashboard=()=>{
         </div>
     );
     const Profile=(
-        <div className="Profile">
-            <h4>You Have a Profile!</h4>
+        
+        <div style={{display:"flex"}}  className="Profile">
+            <div className="edit-profile">
+            <h4><Link to="edit-profile" ><AiFillEdit className="icon" />Edit your Profile</Link></h4>
+            </div>
+            <div className="experience">
+            <h4><Link to="edit-profile" ><MdWork className="icon" />Add experience</Link></h4>
+            </div>
+            <div className="education">
+            <h4><Link to="edit-profile" ><FaGraduationCap className="icon" />Add education</Link></h4>
+            </div>
         </div>
     )
 
@@ -85,7 +97,8 @@ h1{
 
     a{
     border: 2px solid #6470c4;
-    padding: 0.4rem;
+    margin: 1rem;
+    padding: 0.5rem;
     text-decoration: none;
     border-radius: 0rem 0rem 1rem 1rem;
     transition: 0.4s;
@@ -94,6 +107,9 @@ h1{
         background-color: #6470c4;
         border-radius: 1rem 1rem 1rem 1rem;
         color:white;
+    }
+    .icon{
+        margin-right: 0.8rem;
     }
 }
 }

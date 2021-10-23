@@ -59,7 +59,6 @@ router.post("/", [auth, [
         linkedin,
         instagram
     } = req.body;
-    console.log(twitter);
 
     const profileFields = {}
     profileFields.user = req.user.id;
@@ -72,13 +71,13 @@ router.post("/", [auth, [
     if (skills) {
         profileFields.skills = skills.split(',').map((skill)=>skill.trim());
     }
-    profileFields.Socials = {}
-    if (youtube) profileFields.Socials.youtube = youtube;
-    if (twitter) profileFields.Socials.twitter = twitter;
-    if (facebook) profileFields.Socials.facebook = facebook;
-    if (linkedin) profileFields.Socials.linkedin = linkedin;
-    if (instagram) profileFields.Socials.linkedin = instagram;
-
+    const Socials = {}
+    if (youtube){Socials.youtube = youtube;}
+    if (twitter){Socials.twitter = twitter;}
+    if (facebook) {Socials.facebook = facebook;}
+    if (linkedin) {Socials.linkedin = linkedin;}
+    if (instagram) {Socials.linkedin = instagram;}
+    profileFields.social=Socials;
 
     //make this object into a Profile 
     try {
