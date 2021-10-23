@@ -1,13 +1,16 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { createProfile } from "../actions/profile";
+import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
 
 //icons
 import{ BsTwitter,BsInstagram,BsLinkedin,BsYoutube,BsFacebook } from "react-icons/bs";
 
 const CreateProfile=()=>{
-
-
+const history=useHistory();
+const dispatch=useDispatch();
 const [displaySocialInputs,toggleSocialInputs]=useState(false);
 
 const [formData,setFormData]=useState({
@@ -43,11 +46,11 @@ const onChange=(e)=>{
     setFormData({...formData,
         [e.target.name]:e.target.value
     })
-    console.log(e.target.value);
 }
 const onSubmit=(e)=>{
   e.preventDefault();
-  console.log(formData);
+  dispatch(createProfile(formData,history));
+
 }
     return(
         <ProfileStyled>
@@ -55,7 +58,7 @@ const onSubmit=(e)=>{
         <div className="line"></div>
         <form className="form" onSubmit={(e)=>onSubmit(e)}>
         <div className="form-group">
-          <select name="status" value={status} onChange={(e)=>onChange(e)} required>
+          <select name="status" value={status} onChange={(e)=>onChange(e)} >
             <option value="0" >* Select Professional Status</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
@@ -113,7 +116,7 @@ const onSubmit=(e)=>{
             name="skills"
             value={skills}
             onChange={(e)=>onChange(e)}
-          required/>
+          />
           <small className="form-text">
             Please use comma separated values (eg. HTML,CSS,JavaScript)
           </small>

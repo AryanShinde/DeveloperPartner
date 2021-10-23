@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 
 const Alert=()=>{
     const state=useSelector(store=>store.alert);
+    console.log(state.alertType);
     return(
-       state!==null && (state.map((s)=><AlertStyle className={state!==null ? "add-alert":"remove-alert"} key={uuid()} >{s.msg}</AlertStyle>))
+       state!==null && (state.map((s)=><AlertStyle  className={state!==null ? "add-alert":"remove-alert"} style={s.alertType==='danger'? {backgroundColor:"red"}: {backgroundColor:"green"}}  key={uuid()} >{s.msg}</AlertStyle>))
     )
 }
 const AlertStyle=styled.div`

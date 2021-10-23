@@ -35,8 +35,8 @@ router.get("/me", auth, async (req, res) => {
 
 //create and update profile
 router.post("/", [auth, [
-    check("status", "this field is required"),
-    check("skills", "this field is required")
+    check("status", "Status field is required").not().isEmpty(),
+    check("skills", "Skills field is required").not().isEmpty()
 ]], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -104,7 +104,7 @@ router.post("/", [auth, [
 
     } catch (error) {
         console.error(error.message);
-        res.send("server error");
+        res.status(400).send("server error");
     }
 })
 
