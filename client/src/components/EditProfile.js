@@ -53,6 +53,7 @@ const onChange=(e)=>{
 }
 const onSubmit=(e)=>{
   e.preventDefault();
+  console.log(formData);
   dispatch(createProfile(formData,history,true));
 
 }
@@ -67,11 +68,11 @@ useEffect(()=>{
         githubusername:profile.githubusername,
         bio:profile.bio,
         skills:profile.skills.join(","),
-        youtube:profile.social.youtube,
-        instagram:profile.social.instagram,
-        twitter:profile.social.twitter,
-        facebook:profile.social.facebook,
-        linkedin:profile.social.linkedin,
+        youtube:profile.social ? profile.social.youtube!==undefined ? profile.social.youtube: "":"",
+        instagram:profile.social ? profile.social.instagram!==undefined?profile.social.instagram:"":"",
+        twitter: profile.social ?profile.social.twitter!==undefined?profile.social.twitter:"":"",
+        facebook: profile.social ?profile.social.facebook!==undefined ?profile.social.facebook:"":"",
+        linkedin: profile.social ?profile.social.linkedin!==undefined ?profile.social.linkedin:"":"",
     }
         )
 },[])

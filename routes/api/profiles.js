@@ -62,21 +62,21 @@ router.post("/", [auth, [
 
     const profileFields = {}
     profileFields.user = req.user.id;
-    if (company){profileFields.company = company;}
-    if (website) {profileFields.website = website;}
-    if (location){ profileFields.location = location;}
-    if (status){ profileFields.status = status;}
-    if (bio){profileFields.bio = bio;}
-    if (githubusername) {profileFields.githubusername = githubusername;}
-    if (skills) {
+    if (company || company===""){profileFields.company = company;}
+    if (website ||website==="" ) {profileFields.website = website;}
+    if (location ||location===""){ profileFields.location = location;}
+    if (status ||location===""){ profileFields.status = status;}
+    if (bio || bio===""){profileFields.bio = bio;}
+    if (githubusername || githubusername==="") {profileFields.githubusername = githubusername;}
+    if (skills || skills==="") {
         profileFields.skills = skills.split(',').map((skill)=>skill.trim());
     }
     const Socials = {}
-    if (youtube){Socials.youtube = youtube;}
-    if (twitter){Socials.twitter = twitter;}
-    if (facebook) {Socials.facebook = facebook;}
-    if (linkedin) {Socials.linkedin = linkedin;}
-    if (instagram) {Socials.linkedin = instagram;}
+    if (youtube|| youtube===""){Socials.youtube = youtube;}
+    if (twitter || twitter==="" ){Socials.twitter = twitter;}
+    if (facebook || facebook==="") {Socials.facebook = facebook;}
+    if (linkedin ||linkedin==="") {Socials.linkedin = linkedin;}
+    if (instagram ||instagram==="") {Socials.instagram = instagram;}
     profileFields.social=Socials;
 
     //make this object into a Profile 
