@@ -165,17 +165,17 @@ catch(error){
 //@access   "private"
 
 router.put("/experience",[auth,[
-    check("title","this is a required field").not().isEmpty(),
-    check("company","this is a required field").not().isEmpty(),
-    check("from","this is a required field").not().isEmpty()
+    check("title","title is a required field").not().isEmpty(),
+    check("company","company is a required field").not().isEmpty(),
+    check("from","from is a required field").not().isEmpty()
 ]], async (req,res)=>{
-
-    try{
 
     const errors=validationResult(req);
     if(!errors.isEmpty()){
-       return res.send({errors:errors.array()});
+       return res.status(400).send({errors:errors.array()});
     }
+
+    try{
     const {
         title,
         company,

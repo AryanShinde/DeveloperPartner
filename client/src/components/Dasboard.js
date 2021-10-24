@@ -37,7 +37,7 @@ const Dashboard=()=>{
             <h4><Link to="edit-profile" ><AiFillEdit className="icon" />Edit your Profile</Link></h4>
             </div>
             <div className="experience">
-            <h4><Link to="edit-profile" ><MdWork className="icon" />Add experience</Link></h4>
+            <h4><Link to="add-experience" ><MdWork className="icon" />Add experience</Link></h4>
             </div>
             <div className="education">
             <h4><Link to="edit-profile" ><FaGraduationCap className="icon" />Add education</Link></h4>

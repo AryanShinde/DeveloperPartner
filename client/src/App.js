@@ -19,6 +19,7 @@ import {setToken} from "./utils/setToken";
 import Dasboard from "./components/Dasboard";
 import CreateProfilePage from "./pages/CreateProfile";
 import EditProfile from "./components/EditProfile";
+import AddExperience from "./components/AddExperience";
 
 if(localStorage.token){
   setToken(localStorage.token);
@@ -44,6 +45,7 @@ function App() {
             <PrivateRouter exact path="/dashboard" component={Dasboard} />
             <PrivateRouter exact path="/create-profile" component={CreateProfilePage}/>
             <PrivateRouter exact path="/edit-profile" component={EditProfile} />
+            <PrivateRouter exact path="/add-experience" component={AddExperience}/>
           </Switch>
         </section>
     </div>
