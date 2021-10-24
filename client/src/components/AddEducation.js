@@ -1,26 +1,26 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux";
 import {useHistory} from "react-router"
-import { addExperience } from "../actions/profile";
+import { addEducation } from "../actions/profile";
 import styled from "styled-components";
 
-const AddExperience=()=>{
+const AddEducation=()=>{
     const history=useHistory();
     const dispatch=useDispatch();
     const [check,setCheck]=useState(false);
     const [formData,setFormData]=useState({
-        title:"",
-        company:"",
-        location:"",
+        school:"",
+        degree:"",
+        fieldofstudy:"",
         from:"",
         to:"",
         current:false,
         description:""
     })
     const {
-        title,
-        company,
-        location,
+        school,
+        degree,
+        fieldofstudy,
         from,
         to,
         current,
@@ -36,7 +36,7 @@ const AddExperience=()=>{
     const onSubmit=(e)=>{
         e.preventDefault();
         console.log(formData);
-        dispatch(addExperience(formData,history));
+        dispatch(addEducation(formData,history));
 
     }
 
@@ -45,29 +45,29 @@ const AddExperience=()=>{
         <Experience>
             <div className="add-experience">
                 <h1>
-                    Add Experience
+                    Add Education
                 </h1>
                 <div className="line"></div>
             </div>
             <form onSubmit={(e)=>onSubmit(e)} type="submit">
             <div className="form-group title">
-                <input placeholder="*Title" name="title" value={title} onChange={(e)=>onChange(e)} type="text"  />
-                <small>*Title of your experience</small>
+                <input placeholder="*School/College" name="school" value={school} onChange={(e)=>onChange(e)} type="text"  />
+                <small>*Name of your school/college</small>
             </div>
             <div className="form-group company">
-                <input placeholder="*Company" onChange={(e)=>onChange(e)} name="company" value={company} type="text" />
-                <small>*Name of the Company</small>
+                <input placeholder="*Degree" onChange={(e)=>onChange(e)} name="degree" value={degree} type="text" />
+                <small>*Name of your degree</small>
             </div>
             <div className="form-group location">
-                <input placeholder="Location" onChange={(e)=>onChange(e)} name="location" value={location} type="text" />
-                <small>Location</small>
+                <input placeholder="*Field Of Study" onChange={(e)=>onChange(e)} name="fieldofstudy" value={fieldofstudy} type="text" />
+                <small>*Field Of Study</small>
             </div>
             <div className="form-group from">
                 <input placeholder="Starting date" onChange={(e)=>onChange(e)} name="from" value={from} type="date" />
                 <small>*Starting date</small>
             </div>
             <div className="form-group current">
-            <label className="current" htmlFor="current">Currently Working?
+            <label className="current" htmlFor="current">Currently Studying here?
                 <input  onClick={()=>{
                     setCheck(!check);
                     setFormData({...formData,current:!check})
@@ -83,7 +83,7 @@ const AddExperience=()=>{
                 <input placeholder="Description" onChange={(e)=>onChange(e)} name="description" value={description} type="text" />
                 <small>Give a little description about your experience</small>
             </div>
-            <button type="submit">Add Experience</button>
+            <button type="submit">Add Education</button>
             </form>
         </Experience>
     );
@@ -157,4 +157,4 @@ const Experience=styled.div`
         }
     }
 `
-export default AddExperience;
+export default AddEducation;

@@ -167,7 +167,7 @@ catch(error){
 router.put("/experience",[auth,[
     check("title","title is a required field").not().isEmpty(),
     check("company","company is a required field").not().isEmpty(),
-    check("from","from is a required field").not().isEmpty()
+    check("from","Start date is a required field").not().isEmpty()
 ]], async (req,res)=>{
 
     const errors=validationResult(req);
@@ -234,10 +234,10 @@ router.delete("/experience/:exp_id",auth,async (req,res)=>{
 //@access   "private"
 
 router.put("/education",[auth,[
-    check("school","this field is required").not().isEmpty(),
-    check("degree","this field is required").not().isEmpty(),
-    check("fieldofstudy","this field is required").not().isEmpty(),
-    check("from","this field is required").not().isEmpty()
+    check("school","School/college field is required").not().isEmpty(),
+    check("degree","Degree field is required").not().isEmpty(),
+    check("fieldofstudy","\"Field of study\" field is required").not().isEmpty(),
+    check("from","Starting field is required").not().isEmpty()
 ]],async (req,res)=>{
     try{
     const errors=validationResult(req);
