@@ -12,6 +12,8 @@ import {ImUser} from "react-icons/im";
 import {AiFillEdit}from "react-icons/ai";
 import {FaGraduationCap} from "react-icons/fa";
 import {MdWork} from "react-icons/md";
+import Experience from "./Experience";
+import Education from "./Education";
 
 const Dashboard=()=>{
     const dispatch=useDispatch();
@@ -22,6 +24,7 @@ const Dashboard=()=>{
     const isAuthenticated=useSelector((store)=>store.auth.isAuthenticated);
     const user=useSelector((store)=>store.auth.user);
     const userProfile=useSelector(store=>store.profiles.profile);
+    const isLoading=useSelector(store=>store.profiles.isLoading);
 
     
     const NoProfile=(
@@ -30,20 +33,27 @@ const Dashboard=()=>{
             <Link to="/create-profile">Create Profile</Link>
         </div>
     );
-    const Profile=(
-        
-        <div style={{display:"flex"}}  className="Profile">
-            <div className="edit-profile">
-            <h4><Link to="edit-profile" ><AiFillEdit className="icon" />Edit your Profile</Link></h4>
+    const Profile=()=>{
+
+        return(
+        <div className="main-profile">
+            <div style={{display:"flex"}}  className="Profile">
+                <div className="edit-profile">
+                <h4><Link to="edit-profile" ><AiFillEdit className="icon" />Edit your Profile</Link></h4>
+                </div>
+                <div className="experience">
+                <h4><Link to="add-experience" ><MdWork className="icon" />Add experience</Link></h4>
+                </div>
+                <div className="education">
+                <h4><Link to="add-education" ><FaGraduationCap className="icon" />Add education</Link></h4>
+                </div>
             </div>
-            <div className="experience">
-            <h4><Link to="add-experience" ><MdWork className="icon" />Add experience</Link></h4>
-            </div>
-            <div className="education">
-            <h4><Link to="add-education" ><FaGraduationCap className="icon" />Add education</Link></h4>
-            </div>
+            <Experience experience={userProfile.experience}/>
+            <Education education={userProfile.education}/>
+            
         </div>
-    )
+        )
+    }
 
     return(
         <>
@@ -56,7 +66,8 @@ const Dashboard=()=>{
                 <p> welcome, {user.name}</p>
                 </div>
                 <div className="desc">
-                    <p>{userProfile===null ? NoProfile : Profile}</p>
+                    
+                    <p>{userProfile===null ? isLoading ? <Loading/>: NoProfile : Profile()}</p>
                 </div>
          </DashboardStyle>
         }
@@ -69,6 +80,12 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 flex-direction: column;
+.main-profile{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
 .line{
     margin-bottom: 0.4rem;
     background-color: #4c4c78;
@@ -111,6 +128,17 @@ h1{
     .icon{
         margin-right: 0.8rem;
     }
+}
+table{
+    margin: 2rem;
+    width:40rem;
+}
+th{
+    padding:0.4rem 1rem;
+    background-color: #EEEFF7;
+}
+td{
+    padding:0.4rem 1rem;
 }
 }
 

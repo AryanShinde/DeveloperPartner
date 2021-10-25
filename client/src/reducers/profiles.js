@@ -19,7 +19,8 @@ const profiles=(state=initialState,action)=>{
         case "PROFILE_ERROR":
             return{
                 ...state,
-                errors:action.payload
+                errors:action.payload,
+                isLoading:false
             }
         case "LOGOUT":
             return {
