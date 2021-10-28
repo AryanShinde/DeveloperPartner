@@ -150,13 +150,14 @@ catch(error){
 
 router.delete("/",auth,async (req,res)=>{
     try{ 
+        await Post.deleteMany({user:req.user.id});
     await Profile.findOneAndRemove({user:req.user.id});
     await User.findOneAndRemove({_id:req.user.id});
     res.json({msg: "profile and user deleted"});
 }
 catch(error){
     console.error(error);
-    res.json({msg:"server error"});
+    res.status(400).json({msg:"server error"});
 }
 })
 

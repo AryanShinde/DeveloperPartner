@@ -1,18 +1,22 @@
 import React from "react";
 import Moment from "react-moment";
+import { useDispatch } from "react-redux";
+import { deleteExperience } from "../actions/profile";
 
 const Experience=({experience})=>{
 
+    const dispatch=useDispatch();
     const Experiences=experience.map((exp)=>{
         return (
             <tr kry={exp._id}>
                 <td>{exp.company}</td>
                 <td>{exp.title}</td>
                 <td><Moment format="YYYY/DD/MM">{exp.from}</Moment></td>
-                <td>{exp.to==null? "currently working": <Moment format="YYY/DD/MM">{exp.to}</Moment> }</td>
-                <td><button style={{background:"#ff2e3c",border:"none",
+                <td>{exp.to==null? "currently working": <Moment format="YYYY/DD/MM">{exp.to}</Moment> }</td>
+                <td><button onClick={()=>dispatch(deleteExperience(exp._id))} style={{background:"#ff6b7f",border:"none",
                     padding:"0.5rem", color:"white",
-                    borderRadius:"0.4rem", margin:"0.2rem"}}>Delete</button></td>
+                    borderRadius:"0.4rem", margin:"0.2rem",
+                    cursor:"pointer"}}>Delete</button></td>
             </tr>
         )
     })

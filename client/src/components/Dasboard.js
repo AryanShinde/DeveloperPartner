@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 import { useDispatch,useSelector } from "react-redux";
-import profile from "../actions/profile";
+import profile, { deleteProfile } from "../actions/profile";
 import Loading from "./Loading";
 import {Link} from "react-router-dom";
 
@@ -35,6 +35,11 @@ const Dashboard=()=>{
     );
     const Profile=()=>{
 
+    const deleteProfileFun=()=>{
+        if(window.confirm("are you sure you want to delete your profile, it can't be undone")){
+            dispatch(deleteProfile());
+        }
+    }
         return(
         <div className="main-profile">
             <div style={{display:"flex"}}  className="Profile">
@@ -50,6 +55,9 @@ const Dashboard=()=>{
             </div>
             <Experience experience={userProfile.experience}/>
             <Education education={userProfile.education}/>
+            <div className="delete-profile">
+                <button onClick={deleteProfileFun} >Delete Profile</button>
+            </div>
             
         </div>
         )
@@ -139,6 +147,21 @@ th{
 }
 td{
     padding:0.4rem 1rem;
+}
+.delete-profile{
+    button{ margin:1rem;
+    border:none;
+    background: #ff6b7f;
+    color:white;
+    padding:0.48rem;
+    font-size:.8rem;
+    border-radius: 0%.4rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover{
+        background-color: #e03e65;
+    }
+    }
 }
 }
 

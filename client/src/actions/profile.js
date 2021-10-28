@@ -123,8 +123,89 @@ export const addEducation=(formData,history)=>async (dispatch)=>{
         
 
     }
-
-
 }
 
+export const deleteExperience=(id)=>async (dispatch)=>{
+    try {
+        const res=await axios.delete(`api/profiles/experience/${id}`);
+        dispatch({
+            type:"UPDATE_PROFILE",
+            payload: res.data
+        })
+        dispatch(SetAlert("Experience Removed","success"));
+
+    } catch (error) {
+         const errors=error.response.data.errors;
+        if(errors){
+        errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
+        }
+        else if(error.response.data.error){
+        dispatch(SetAlert(error.response.data.error,"danger"));
+        }else if(error.response.data.msg && !Array.isArray(error.response.data.msg)){
+            dispatch(SetAlert(error.response.data.msg,"danger"));
+        }
+        dispatch({
+            type: "PROFILE_ERROR",
+            payload:error.response
+        })
+        
+    }
+}
+
+export const deleteEducation=(id)=>async (dispatch)=>{
+    try {
+        const res=await axios.delete(`api/profiles/education/${id}`);
+        dispatch({
+            type:"UPDATE_PROFILE",
+            payload: res.data
+        })
+        dispatch(SetAlert("Education Removed","success"));
+
+    } catch (error) {
+         const errors=error.response.data.errors;
+        if(errors){
+        errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
+        }
+        else if(error.response.data.error){
+        dispatch(SetAlert(error.response.data.error,"danger"));
+        }else if(error.response.data.msg && !Array.isArray(error.response.data.msg)){
+            dispatch(SetAlert(error.response.data.msg,"danger"));
+        }
+        dispatch({
+            type: "PROFILE_ERROR",
+            payload:error.response
+        })
+        
+    }
+}
+
+export const deleteProfile=()=>async (dispatch)=>{
+    try {
+        const res=await axios.delete(`api/profiles/`);
+        dispatch({
+            type:"DELETE_PROFILE",
+            payload: res.data
+        })
+        dispatch({
+            type:"LOGOUT"
+        })
+        dispatch(SetAlert("Profile deleted","success"));
+
+    } catch (error) {
+         const errors=error.response.data.errors;
+        if(errors){
+        errors.forEach((e)=>dispatch(SetAlert(e.msg,"danger")));
+        }
+        else if(error.response.data.error){
+        dispatch(SetAlert(error.response.data.error,"danger"));
+        }else if(error.response.data.msg && !Array.isArray(error.response.data.msg)){
+            dispatch(SetAlert(error.response.data.msg,"danger"));
+        }
+        dispatch({
+            type: "PROFILE_ERROR",
+            payload:error.response
+        })
+        
+    }
+}
 export default profile;

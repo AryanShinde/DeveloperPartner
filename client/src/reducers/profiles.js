@@ -23,6 +23,7 @@ const profiles=(state=initialState,action)=>{
                 isLoading:false
             }
         case "LOGOUT":
+            
             return {
                 ...state,
                 profile:null,

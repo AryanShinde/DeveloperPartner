@@ -1,8 +1,10 @@
 import React from "react";
 import Moment from "react-moment";
+import { useDispatch } from "react-redux";
+import { deleteEducation } from "../actions/profile";
 
 const Education=({education})=>{
-
+    const dispatch=useDispatch();
     const Education=education.map((edu)=>{
         return (
             <tr kry={edu._id}>
@@ -10,10 +12,11 @@ const Education=({education})=>{
                 <td>{edu.degree}</td>
                 <td>{edu.fieldofstudy}</td>
                 <td><Moment format="YYYY/DD/MM">{edu.from}</Moment></td>
-                <td>{edu.to==null? "currently working": <Moment format="YYY/DD/MM">{edu.to}</Moment> }</td>
-                <td><button style={{background:"#ff2e3c",border:"none",
+                <td>{edu.to==null? "currently Studying": <Moment format="YYY/DD/MM">{edu.to}</Moment> }</td>
+                <td><button onClick={()=>dispatch(deleteEducation(edu._id))} style={{background:"#ff6b7f",border:"none",
                     padding:"0.5rem", color:"white",
-                    borderRadius:"0.4rem", margin:"0.2rem"}}>Delete</button></td>
+                    borderRadius:"0.4rem", margin:"0.2rem",
+                    cursor:"pointer"}}>Delete</button></td>
             </tr>
         )
     })
