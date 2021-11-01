@@ -21,6 +21,7 @@ import CreateProfilePage from "./pages/CreateProfile";
 import EditProfile from "./components/EditProfile";
 import AddExperience from "./components/AddExperience";
 import AddEducation from "./components/AddEducation";
+import Profiles from "./pages/Profiles";
 
 if(localStorage.token){
   setToken(localStorage.token);
@@ -43,6 +44,7 @@ function App() {
           <Switch>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={SignUp} />
+            <Route exact path="/profiles" component={Profiles} />
             <PrivateRouter exact path="/dashboard" component={Dasboard} />
             <PrivateRouter exact path="/create-profile" component={CreateProfilePage}/>
             <PrivateRouter exact path="/edit-profile" component={EditProfile} />

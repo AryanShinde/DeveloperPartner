@@ -16,7 +16,7 @@ const Nav=()=>{
     const logged=(
         <ul>
             <li><Link to="/">Home</Link></li>
-            <li>Developers</li>
+            <li><Link to="/profiles">Developers</Link></li>
             <li><Link onClick={()=>dispatch(logout())} to="/">Logout</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
         </ul>
@@ -24,7 +24,7 @@ const Nav=()=>{
     const guest=(
         <ul>
             <li><Link to="/">Home</Link></li>
-            <li>Developers</li>
+            <li><Link to="/profiles">Developers</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/signup">Signup</Link></li>
         </ul>

@@ -17,6 +17,23 @@ const profile=()=>async (dispatch)=>{
         })
     }
 }
+export const getProfiles=()=>async (dispatch)=>{
+    try {
+        const res=await axios.get("api/profiles");
+        dispatch({
+            type:"GET_PROFILES" ,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error.response);
+        dispatch({
+            type: "PROFILE_ERROR",
+            payload:error.response
+        })
+    }
+}
+
+
 
 export const createProfile=(formData,history,edit=false)=> async (dispatch)=>{
     try {

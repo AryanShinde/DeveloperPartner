@@ -16,6 +16,12 @@ const profiles=(state=initialState,action)=>{
                 profile:action.payload,
                 isLoading:false,
             }
+        case "GET_PROFILES":
+            return {
+                ...state,
+                profiles:action.payload,
+                isLoading:false
+            }
         case "PROFILE_ERROR":
             return{
                 ...state,
