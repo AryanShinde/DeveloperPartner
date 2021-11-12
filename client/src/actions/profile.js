@@ -32,7 +32,25 @@ export const getProfiles=()=>async (dispatch)=>{
         })
     }
 }
-
+export const guestProfile=(userid)=>async (dispatch)=>{
+    // dispatch({
+    //     type:"CLEAR_PROFILE"
+    // })
+    try {
+        const res=await axios.get(`/api/profiles/user/${userid}`);
+        dispatch({
+            type:"GET_PROFILE" ,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log("here?");
+        console.log(error.response);
+        dispatch({
+            type: "PROFILE_ERROR",
+            payload:error.response
+        })
+    }
+}
 
 
 export const createProfile=(formData,history,edit=false)=> async (dispatch)=>{

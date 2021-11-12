@@ -11,7 +11,7 @@ const ProfileItem=(props)=>{
             <div className="name">
             <div className="name"><h3>{props.data.user.name}</h3></div>
             <div className="status"><h4>{props.data.status} {props.data.company && `at ${props.data.company}`}</h4></div>
-            <Link>view Profile</Link>
+            <Link to={`/profile/${props.data.user._id}`}>view Profile</Link>
             </div>
             <div className="details">
             <div className="skills">{props.data.skills.slice(0,4).map((skill)=> <div className="skill"><MdOutlineDoneOutline/> <p>{skill}</p></div>)}</div>

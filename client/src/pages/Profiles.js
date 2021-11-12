@@ -8,7 +8,7 @@ const Profiles=()=>{
     const dispatch=useDispatch();
     useEffect(()=>{
         dispatch(getProfiles())
-    },[])
+    },[dispatch])
     return(
         <>
         <GetProfiles/>

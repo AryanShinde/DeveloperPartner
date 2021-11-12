@@ -22,6 +22,15 @@ const profiles=(state=initialState,action)=>{
                 profiles:action.payload,
                 isLoading:false
             }
+        case "CLEAR_PROFILE":
+            return {
+                ...state,
+                profiles:[],
+                profile:null,
+                repos:[],
+                isLoading:false,
+                errors:{}
+            }
         case "PROFILE_ERROR":
             return{
                 ...state,

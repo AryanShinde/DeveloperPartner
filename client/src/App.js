@@ -22,6 +22,7 @@ import EditProfile from "./components/EditProfile";
 import AddExperience from "./components/AddExperience";
 import AddEducation from "./components/AddEducation";
 import Profiles from "./pages/Profiles";
+import GuestProfile from "./pages/GuestProfile";
 
 if(localStorage.token){
   setToken(localStorage.token);
@@ -45,11 +46,13 @@ function App() {
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={SignUp} />
             <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profile/:id" component={GuestProfile} />
             <PrivateRouter exact path="/dashboard" component={Dasboard} />
             <PrivateRouter exact path="/create-profile" component={CreateProfilePage}/>
             <PrivateRouter exact path="/edit-profile" component={EditProfile} />
             <PrivateRouter exact path="/add-experience" component={AddExperience}/>
             <PrivateRouter exact path="/add-education" component={AddEducation}/>
+            <PrivateRouter exact path="/user" component={GuestProfile} />
           </Switch>
         </section>
     </div>
