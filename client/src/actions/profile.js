@@ -33,9 +33,9 @@ export const getProfiles=()=>async (dispatch)=>{
     }
 }
 export const guestProfile=(userid)=>async (dispatch)=>{
-    // dispatch({
-    //     type:"CLEAR_PROFILE"
-    // })
+    dispatch({
+        type:"CLEAR_PROFILE"
+    })
     try {
         const res=await axios.get(`/api/profiles/user/${userid}`);
         dispatch({
