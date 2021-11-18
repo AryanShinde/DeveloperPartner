@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import ProfileExperience from "../components/ProfileExperience";
 import ProfileEducation from "../components/ProfileEducation";
+import GithubProfile from "../components/githubProfile";
+import { githubAction } from "../actions/githubRepo";
+import { BsPatchCheckFill } from "react-icons/bs";
 
 import {
   BsFacebook,
@@ -31,6 +34,9 @@ const GuestProfile = () => {
   }, [dispatch, path]);
   if (!user.isAuthenticated) {
     history.push("/signup");
+  }
+  if (curr) {
+    dispatch(githubAction(curr.user.name));
   }
 
   return (
@@ -82,54 +88,61 @@ const GuestProfile = () => {
                   {curr.social && (
                     <div className="socials">
                       {curr.social.linkedin && (
-                        <a
+                        <Link
                           target="_blank"
                           rel="noreferrer"
                           href={curr.linkedin}
                         >
-                          <BsLinkedin className="icons" />
-                        </a>
+                          <BsLinkedin className="icons linkedin" />
+                        </Link>
                       )}
-                      {
+                      {curr.social.facebook && (
                         <a
                           target="_blank"
                           rel="noreferrer"
                           href={curr.facebook}
                         >
-                          <BsFacebook className="icons" />
+                          <BsFacebook className="icons facebook" />
                         </a>
-                      }
-                      {
-                        <a target="_blank" rel="noreferrer" href={curr.twitter}>
-                          <BsTwitter className="icons" />
-                        </a>
-                      }
-                      {
+                      )}
+                      {curr.social.twitter && (
+                        <Link
+                          target="_blank"
+                          rel="noreferrer"
+                          to={{ pathname: curr.twitter }}
+                        >
+                          <BsTwitter className="icons twitter" />
+                        </Link>
+                      )}
+                      {curr.social.instagram && (
                         <a
                           target="_blank"
                           rel="noreferrer"
                           href={curr.instagram}
                         >
-                          <BsInstagram className="icons" />
+                          <BsInstagram className="icons instagram" />
                         </a>
-                      }
-                      {
+                      )}
+                      {curr.social.youtube && (
                         <a target="_blank" rel="noreferrer" href={curr.youtube}>
                           <BsYoutube className="icons youtube" />
                         </a>
-                      }
+                      )}
                     </div>
                   )}
                 </div>
                 <div className="right">
-                  <h4>My Skills: </h4>
                   <div className="skills">
                     {curr.skills.map((skill) => (
-                      <p>{skill}</p>
+                      <div className="partSkill">
+                        <BsPatchCheckFill className="check" />
+                        {skill}
+                      </div>
                     ))}
                   </div>
                 </div>
               </div>
+              <hr />
             </Top>
 
             <div className="experience">
@@ -156,6 +169,10 @@ const GuestProfile = () => {
               ) : (
                 <h4>No Education Credentials</h4>
               )}
+            </div>
+            <div className="githubRepo">
+              <h1>Github repo</h1>
+              {/* <GithubProfile data={"AryanShinde"} /> */}
             </div>
           </Main>
         </Profile>
@@ -192,10 +209,29 @@ const Main = styled.div`
   width: 70%;
   height: auto;
   border-radius: 1rem;
+  box-shadow: 4px 4px 30px #d3d3d3;
+  padding: 1rem;
+
   .experience,
   .education {
+    background-color: #c8cef7;
+    margin: 2rem;
+    border-radius: 1rem;
+    box-shadow: 4px 4px 15px 1px #8895e8;
     h1 {
       color: #6470c4;
+      margin: 2rem 0rem;
+      text-align: center;
+    }
+    hr {
+      width: 80%;
+      border: 0;
+      border-top: 3px double #8c8c8c;
+      margin: 1rem;
+    }
+    p,
+    time {
+      margin: 0.6rem;
     }
     padding: 1rem 2rem;
   }
@@ -209,8 +245,20 @@ const Top = styled.div`
   justify-content: center;
   flex-direction: column;
   border-radius: 1rem;
+  hr {
+    border: 0;
+    height: 1px;
+    width: 80%;
+    margin: 0 auto;
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
+  }
   .banner {
-    background-color: wheat;
+    background-color: #6470c4;
     width: 100%;
     height: 20vh;
     border-radius: 1rem 1rem 0rem 0rem;
@@ -240,11 +288,40 @@ const Top = styled.div`
       }
     }
     .right {
-      margin-right: 4rem;
       margin-top: 2rem;
-
-      * {
-        margin: 0.4rem;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      .skills {
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .check {
+          padding: 0rem 0.4rem;
+          font-size: 28px;
+          transition: 0.8s ease-in-out;
+        }
+        .partSkill {
+          background-color: #98fb98;
+          padding: 0.4rem;
+          border-radius: 0.6rem;
+          margin: 0.4rem 0.4rem;
+          display: flex;
+          justify-content: center;
+          cursor: pointer;
+          align-items: center;
+          transition: 0.3s ease-in-out;
+          &:hover {
+            transform: scale(1.2);
+            .check {
+              transform: rotate(360deg);
+              transition-delay: 0.1s;
+            }
+          }
+        }
       }
     }
   }
@@ -252,8 +329,46 @@ const Top = styled.div`
     font-size: 32px;
     transition: 0.2s ease-in-out;
   }
-  .youtube:hover {
+  .youtube {
     color: red;
+  }
+  .instagram {
+    color: #e1306c;
+    color: -moz-linear-gradient(
+      45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%
+    );
+    color: -webkit-linear-gradient(
+      45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%
+    );
+    color: linear-gradient(
+      45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  }
+
+  .twitter {
+    color: #1a8cd8;
+  }
+  .facebook {
+    color: #3b5998;
+  }
+  .linkedin {
+    color: #0e76a8;
   }
 `;
 export default GuestProfile;

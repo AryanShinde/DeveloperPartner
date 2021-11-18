@@ -1,18 +1,18 @@
 import React from "react";
 import Moment from "react-moment";
+
 const ProfileEducation = ({
   education: { school, degree, fieldofstudy, to, from, description, current },
 }) => {
   return (
     <div className="edu">
-      <hr />
       <p>
         <strong>{school}</strong>
+        <Moment format="DD/MM/YY">{from}</Moment> -{" "}
+        {current ? "present" : <Moment format="DD/MM/YYYY">{to}</Moment>}
       </p>
-      <Moment format="DD/MM/YY">{from}</Moment> -{" "}
-      {current ? "present" : <Moment format="DD/MM/YYYY">{to}</Moment>}
       <p>
-        <strong>Working as: </strong>
+        <strong>Studying: </strong>
         {degree}
       </p>
       <p>
@@ -23,6 +23,7 @@ const ProfileEducation = ({
         <strong>Description: </strong>
         {description}
       </p>
+      <hr />
     </div>
   );
 };

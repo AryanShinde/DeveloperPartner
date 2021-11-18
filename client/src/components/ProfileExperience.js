@@ -5,7 +5,6 @@ const ProfileExperience = ({
 }) => {
   return (
     <div className="exp">
-      <hr />
       <p>
         <strong>{company}</strong>,{location}
       </p>
@@ -19,6 +18,7 @@ const ProfileExperience = ({
         <strong>Description: </strong>
         {description}
       </p>
+      <hr />
     </div>
   );
 };
