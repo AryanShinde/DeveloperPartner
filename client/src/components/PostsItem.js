@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import styled from "styled-components";
 import { BiLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { RiShareForwardLine } from "react-icons/ri";
+import { addLike } from "../actions/post";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 const PostItem = ({
   post: { text, user, _id, likes, comments, date, avatar, name, bio },
 }) => {
+  const dispatch = useDispatch();
+  const [liked, setLiked] = useState(false);
+  const posts = useSelector((store) => store.post.posts);
+  const post = posts.filter((p) => p._id === _id);
+  console.log(post);
+
+  useEffect(() => {
+    post[0].likes.map((like) =>
+      like.user === user ? setLiked(true) : setLiked(false)
+    );
+  }, [post.likes, user]);
+  const likeHandler = () => {
+    dispatch(addLike(_id));
+    setLiked(!liked);
+  };
+
   return (
     <Post>
       <div className="post">
@@ -40,7 +60,10 @@ const PostItem = ({
           <hr />
 
           <div className="action-panel">
-            <div className="like">
+            <div
+              className={`${liked ? "like-active" : ""} like`}
+              onClick={() => likeHandler()}
+            >
               <BiLike className="icons" />
               <p>Like</p>
             </div>
@@ -118,6 +141,23 @@ const Post = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
+    }
+  }
+  .like-active {
+    background-color: #6470c4;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+    color: white;
+    animation: pop 0.4s;
+  }
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(1.2);
     }
   }
 `;

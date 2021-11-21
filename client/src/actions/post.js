@@ -27,3 +27,19 @@ export const GetPost = () => async (dispatch) => {
     });
   }
 };
+
+export const addLike = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.put(`api/posts/likes/${postId}`);
+    console.log(res);
+    dispatch({
+      type: "UPDATE_LIKE",
+      payload: { postId, likes: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: "POSTS_ERROR",
+      payload: error,
+    });
+  }
+};
