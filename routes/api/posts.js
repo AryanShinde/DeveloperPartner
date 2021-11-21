@@ -50,6 +50,15 @@ router.get("/", auth, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.send(post);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: error });
+  }
+});
 
 //@route    "/api/posts"
 //@desc     "Delete particular posts"

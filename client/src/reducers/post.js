@@ -13,10 +13,34 @@ export default function post(state = initialState, action) {
         posts: action.payload,
         isLoading: false,
       };
+    case "GET_POST":
+      return {
+        ...state,
+        post: action.payload,
+        isLoading: false,
+      };
+    case "ADD_POST":
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
+        isLoading: false,
+      };
+    case "ADD_COMMENT":
+      return {
+        ...state,
+        post: { ...state.post, comments: action.payload },
+        isLoading: false,
+      };
     case "DELETE_POST":
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload),
+        isLoading: false,
+      };
+    case "DELETE_COMMENT":
+      return {
+        ...state,
+        post: { ...state.post, comments: action.payload },
         isLoading: false,
       };
     case "UPDATE_LIKE":

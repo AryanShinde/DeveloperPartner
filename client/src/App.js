@@ -24,6 +24,7 @@ import AddEducation from "./components/AddEducation";
 import Profiles from "./pages/Profiles";
 import GuestProfile from "./pages/GuestProfile";
 import Post from "./pages/Post";
+import SinglePost from "./components/SinglePost";
 
 if (localStorage.token) {
   setToken(localStorage.token);
@@ -62,6 +63,7 @@ function App() {
           <PrivateRouter exact path="/add-education" component={AddEducation} />
           {/* <PrivateRouter exact path="/user" component={GuestProfile} /> */}
           <PrivateRouter exact path="/posts" component={Post} />
+          <PrivateRouter exact path="/posts/:id" component={SinglePost} />
         </Switch>
       </section>
     </div>

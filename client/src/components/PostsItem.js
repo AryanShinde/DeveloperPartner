@@ -8,37 +8,49 @@ import { addLike, deletePost } from "../actions/post";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const PostItem = ({
   post: { text, user, _id, likes, comments, date, avatar, name, bio },
   authUser,
+  view = false,
 }) => {
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
-  const posts = useSelector((store) => store.post.posts);
-  const post = posts.filter((p) => p._id === _id);
+  const posts = useSelector((store) => store.post);
+  const post = posts.posts.filter((p) => p._id === _id);
+  const single = posts.post;
 
   useEffect(() => {
-    post[0].likes.map((like) =>
-      like.user === authUser ? setLiked(true) : setLiked(false)
-    );
-  }, [post.likes, authUser, post]);
+    if (!view) {
+      post[0].likes.map((like) =>
+        like.user === authUser ? setLiked(true) : setLiked(false)
+      );
+    } else {
+      single.likes.map((like) =>
+        like.user === authUser ? setLiked(true) : setLiked(false)
+      );
+    }
+  }, [post.likes, authUser, post, view]);
 
   const likeHandler = () => {
-    console.log(liked);
     setLiked(!liked);
     dispatch(addLike(_id));
   };
 
   return (
-    <Post>
+    <PostStyled>
       <div className="post">
         <div className="up">
           <div className="avatar">
-            <img src={avatar} alt={name} />
+            <Link to={`/profile/${user}`}>
+              <img src={avatar} alt={name} />
+            </Link>
           </div>
           <div className="name">
-            <h4>{name}</h4>
+            <Link to={`/profile/${user}`}>
+              <h4>{name}</h4>
+            </Link>
             <small>{bio}</small>
             <small>
               <Moment className="date" format="DD/MM/YYYY">
@@ -48,7 +60,9 @@ const PostItem = ({
           </div>
         </div>
         <div className="down">
-          <p className="text">{text}</p>
+          <div className="main">
+            <div className="text">{text}</div>
+          </div>
           <div className="infoLine">
             <div className="likecount">
               <p>Likes: {likes.length}</p>
@@ -73,9 +87,9 @@ const PostItem = ({
             <div className="share">
               <RiShareForwardLine className="icons" /> <p>Share</p>
             </div>
-            <div className="comment">
+            <Link to={`/posts/${_id}`} className="comment">
               <FaRegCommentDots className="icons" /> <p>comment</p>
-            </div>
+            </Link>
             {authUser === user && (
               <div className="delete" onClick={() => dispatch(deletePost(_id))}>
                 <AiOutlineDelete />
@@ -85,15 +99,19 @@ const PostItem = ({
           </div>
         </div>
       </div>
-    </Post>
+    </PostStyled>
   );
 };
 
-const Post = styled.div`
+const PostStyled = styled.div`
   margin: 1rem;
-  padding: 1rem 1rem 0rem 1rem;
+  padding: 1rem;
   height: auto;
   width: 60%;
+  max-width: 60%;
+  border: 2px solid #d3d3d3;
+  border-radius: 1rem;
+
   .post {
     display: flex;
     justify-content: center;
@@ -110,6 +128,12 @@ const Post = styled.div`
     .date {
       margin-left: 0.4rem;
     }
+    .name {
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -117,12 +141,21 @@ const Post = styled.div`
   .down {
     margin: 1rem 0rem 0rem 0.4rem;
     display: flex;
+    height: auto;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+    max-width: 100%;
     flex-direction: column;
+    padding: 1rem;
+    .main {
+      max-width: 100%;
+      width: 100%;
+    }
     .text {
       padding: 0rem 1rem 1rem 1rem;
+      max-width: 100%;
+      word-wrap: break-word;
     }
     hr {
       height: 2px;
@@ -152,6 +185,10 @@ const Post = styled.div`
       justify-content: center;
       align-items: center;
       cursor: pointer;
+    }
+    .comment {
+      text-decoration: none;
+      color: black;
     }
   }
   .like-active {
