@@ -7,8 +7,7 @@ import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import ProfileExperience from "../components/ProfileExperience";
 import ProfileEducation from "../components/ProfileEducation";
-import GithubProfile from "../components/githubProfile";
-import { githubAction } from "../actions/githubRepo";
+// import { githubAction } from "../actions/githubRepo";
 import { BsPatchCheckFill } from "react-icons/bs";
 
 import {
@@ -35,9 +34,9 @@ const GuestProfile = () => {
   if (!user.isAuthenticated) {
     history.push("/signup");
   }
-  if (curr) {
-    dispatch(githubAction(curr.user.name));
-  }
+  // if (curr) {
+  //   dispatch(githubAction(curr.user.name));
+  // }
 
   return (
     <>
