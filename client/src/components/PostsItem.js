@@ -4,27 +4,30 @@ import styled from "styled-components";
 import { BiLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { RiShareForwardLine } from "react-icons/ri";
-import { addLike } from "../actions/post";
+import { addLike, deletePost } from "../actions/post";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const PostItem = ({
   post: { text, user, _id, likes, comments, date, avatar, name, bio },
+  authUser,
 }) => {
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
   const posts = useSelector((store) => store.post.posts);
   const post = posts.filter((p) => p._id === _id);
-  console.log(post);
 
   useEffect(() => {
     post[0].likes.map((like) =>
-      like.user === user ? setLiked(true) : setLiked(false)
+      like.user === authUser ? setLiked(true) : setLiked(false)
     );
-  }, [post.likes, user]);
+  }, [post.likes, authUser, post]);
+
   const likeHandler = () => {
-    dispatch(addLike(_id));
+    console.log(liked);
     setLiked(!liked);
+    dispatch(addLike(_id));
   };
 
   return (
@@ -62,7 +65,7 @@ const PostItem = ({
           <div className="action-panel">
             <div
               className={`${liked ? "like-active" : ""} like`}
-              onClick={() => likeHandler()}
+              onClick={likeHandler}
             >
               <BiLike className="icons" />
               <p>Like</p>
@@ -73,6 +76,12 @@ const PostItem = ({
             <div className="comment">
               <FaRegCommentDots className="icons" /> <p>comment</p>
             </div>
+            {authUser === user && (
+              <div className="delete" onClick={() => dispatch(deletePost(_id))}>
+                <AiOutlineDelete />
+                <p>Delete Post</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -137,7 +146,8 @@ const Post = styled.div`
     }
     .like,
     .comment,
-    .share {
+    .share,
+    .delete {
       display: flex;
       justify-content: center;
       align-items: center;

@@ -43,3 +43,21 @@ export const addLike = (postId) => async (dispatch) => {
     });
   }
 };
+
+//delete post
+export const deletePost = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`api/posts/${postId}`);
+    console.log(res);
+    dispatch({
+      type: "DELETE_POST",
+      payload: postId,
+    });
+    dispatch(SetAlert("posts deleted", "success"));
+  } catch (error) {
+    dispatch({
+      type: "POSTS_ERROR",
+      payload: error,
+    });
+  }
+};

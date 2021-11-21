@@ -13,6 +13,12 @@ export default function post(state = initialState, action) {
         posts: action.payload,
         isLoading: false,
       };
+    case "DELETE_POST":
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+        isLoading: false,
+      };
     case "UPDATE_LIKE":
       return {
         ...state,
