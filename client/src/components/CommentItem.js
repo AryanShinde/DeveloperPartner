@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import Moment from "react-moment";
 import styled from "styled-components";
@@ -52,8 +51,8 @@ const CommentItemStyled = styled.div`
   margin: 1rem;
   padding: 1rem;
   height: auto;
-  width: 60%;
-  max-width: 60%;
+  width: 70%;
+  max-width: 70%;
   border: 2px solid #d3d3d3;
   border-radius: 1rem;
   position: relative;

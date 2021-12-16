@@ -72,7 +72,7 @@ const NavStyled = styled.div`
   position: sticky;
   z-index: 2;
   top: 0;
-  border-radius: 0rem 0rem 1rem 1rem;
+  border-radius: 0rem 0rem 1rem 0rem;
   a {
     text-decoration: none;
     color: white;

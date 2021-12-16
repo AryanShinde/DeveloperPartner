@@ -1,36 +1,41 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { createProfile } from "../actions/profile";
 import { useHistory } from "react-router";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //icons
-import{ BsTwitter,BsInstagram,BsLinkedin,BsYoutube,BsFacebook } from "react-icons/bs";
+import {
+  BsTwitter,
+  BsInstagram,
+  BsLinkedin,
+  BsYoutube,
+  BsFacebook,
+} from "react-icons/bs";
 
-const EditProfile=()=>{
+const EditProfile = () => {
+  const profile = useSelector((store) => store.profiles.profile);
 
-const profile=useSelector((store)=>store.profiles.profile);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-const history=useHistory();
-const dispatch=useDispatch();
-const [displaySocialInputs,toggleSocialInputs]=useState(false);
-
-const [formData,setFormData]=useState({
-    company:"",
-    website:"",
-    location:"",
-    status:"",
-    skills:"",
-    bio:"",
-    githubusername:'',
-    youtube:"",
-    twitter:"",
-    facebook:"",
-    linkedin:"",
-    instagram:""
-})
-const {
+  const [formData, setFormData] = useState({
+    company: "",
+    website: "",
+    location: "",
+    status: "",
+    skills: "",
+    bio: "",
+    githubusername: "",
+    youtube: "",
+    twitter: "",
+    facebook: "",
+    linkedin: "",
+    instagram: "",
+  });
+  const {
     company,
     website,
     location,
@@ -42,50 +47,65 @@ const {
     twitter,
     facebook,
     linkedin,
-    instagram
-}=formData;
+    instagram,
+  } = formData;
 
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    dispatch(createProfile(formData, history, true));
+  };
 
-const onChange=(e)=>{
-    setFormData({...formData,
-        [e.target.name]:e.target.value
-    })
-}
-const onSubmit=(e)=>{
-  e.preventDefault();
-  console.log(formData);
-  dispatch(createProfile(formData,history,true));
-
-}
-
-useEffect(()=>{
+  useEffect(() => {
     setFormData({
-        ...formData,
-        status:profile.status,
-        company:profile.company,
-        website:profile.website,
-        location:profile.location,
-        githubusername:profile.githubusername,
-        bio:profile.bio,
-        skills:profile.skills.join(","),
-        youtube:profile.social ? profile.social.youtube!==undefined ? profile.social.youtube: "":"",
-        instagram:profile.social ? profile.social.instagram!==undefined?profile.social.instagram:"":"",
-        twitter: profile.social ?profile.social.twitter!==undefined?profile.social.twitter:"":"",
-        facebook: profile.social ?profile.social.facebook!==undefined ?profile.social.facebook:"":"",
-        linkedin: profile.social ?profile.social.linkedin!==undefined ?profile.social.linkedin:"":"",
-    }
-        )
-},[])
+      ...formData,
+      status: profile.status,
+      company: profile.company,
+      website: profile.website,
+      location: profile.location,
+      githubusername: profile.githubusername,
+      bio: profile.bio,
+      skills: profile.skills.join(","),
+      youtube: profile.social
+        ? profile.social.youtube !== undefined
+          ? profile.social.youtube
+          : ""
+        : "",
+      instagram: profile.social
+        ? profile.social.instagram !== undefined
+          ? profile.social.instagram
+          : ""
+        : "",
+      twitter: profile.social
+        ? profile.social.twitter !== undefined
+          ? profile.social.twitter
+          : ""
+        : "",
+      facebook: profile.social
+        ? profile.social.facebook !== undefined
+          ? profile.social.facebook
+          : ""
+        : "",
+      linkedin: profile.social
+        ? profile.social.linkedin !== undefined
+          ? profile.social.linkedin
+          : ""
+        : "",
+    });
+    // eslint-disable-next-line
+  }, []);
 
-
-    return(
-        <ProfileStyled>
-            <h1>Create your Profile</h1>
-        <div className="line"></div>
-        <form className="form" onSubmit={(e)=>onSubmit(e)}>
+  return (
+    <ProfileStyled>
+      <h1>Create your Profile</h1>
+      <div className="line"></div>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <select name="status" value={status} onChange={(e)=>onChange(e)} >
-            <option value="0" >* Select Professional Status</option>
+          <select name="status" value={status} onChange={(e) => onChange(e)}>
+            <option value="0">* Select Professional Status</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
             <option value="Senior Developer">Senior Developer</option>
@@ -105,7 +125,7 @@ useEffect(()=>{
             placeholder="Company"
             name="company"
             value={company}
-            onChange={(e)=>onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             Could be your own company or one you work for
@@ -141,7 +161,7 @@ useEffect(()=>{
             placeholder="* Skills"
             name="skills"
             value={skills}
-            onChange={(e)=>onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             Please use comma separated values (eg. HTML,CSS,JavaScript)
@@ -153,7 +173,7 @@ useEffect(()=>{
             placeholder="Github Username"
             name="githubusername"
             value={githubusername}
-            onChange={(e)=>onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             If you want your latest repos and a Github link, include your
@@ -165,7 +185,7 @@ useEffect(()=>{
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
-            onChange={(e)=>onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">Tell us a little about yourself</small>
         </div>
@@ -184,45 +204,45 @@ useEffect(()=>{
         {displaySocialInputs && (
           <div className="socials">
             <div className="form-group social-input">
-              <BsTwitter className="icons"/>
+              <BsTwitter className="icons" />
               <input
                 type="text"
                 placeholder="Twitter URL"
                 name="twitter"
                 value={twitter}
-                onChange={(e)=>onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
             <div className="form-group social-input">
-              <BsFacebook className="icons"/>
+              <BsFacebook className="icons" />
               <input
                 type="text"
                 placeholder="Facebook URL"
                 name="facebook"
                 value={facebook}
-                onChange={(e)=>onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
             <div className="form-group social-input">
-              <BsYoutube className="icons"/>
+              <BsYoutube className="icons" />
               <input
                 type="text"
                 placeholder="YouTube URL"
                 name="youtube"
                 value={youtube}
-                onChange={(e)=>onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
             <div className="form-group social-input">
-              <BsLinkedin className="icons"/>
+              <BsLinkedin className="icons" />
               <input
                 type="text"
                 placeholder="Linkedin URL"
                 name="linkedin"
                 value={linkedin}
-                onChange={(e)=>onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
 
@@ -233,7 +253,7 @@ useEffect(()=>{
                 placeholder="Instagram URL"
                 name="instagram"
                 value={instagram}
-                onChange={(e)=>onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
           </div>
@@ -246,68 +266,68 @@ useEffect(()=>{
           Go Back
         </Link>
       </form>
-        </ProfileStyled>
-    )
-}
+    </ProfileStyled>
+  );
+};
 
-const ProfileStyled=styled.div`
-h1{
-  color: #4c4c78;
-  margin-bottom: 1rem;
-}
-.line{
+const ProfileStyled = styled.div`
+  h1 {
+    color: #4c4c78;
+    margin-bottom: 1rem;
+  }
+  .line {
     margin-bottom: 0.4rem;
     background-color: #4c4c78;
-    width:40rem;
+    width: 40rem;
     height: 0.4rem;
     border-radius: 0rem 0rem 1rem 1rem;
-}
-    margin-top: 2rem;
-    .form-group{
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        margin: 1rem 0rem;
-    }
-    input,select,textarea{
-        margin-bottom: 0.4rem;
-        padding: 0.3rem;
-        font-size: 1rem;
-        border-radius:0.3rem;
-        border: 2px solid #6470c4;
-        width: 60%;
+  }
+  margin-top: 2rem;
+  .form-group {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 1rem 0rem;
+  }
+  input,
+  select,
+  textarea {
+    margin-bottom: 0.4rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    border: 2px solid #6470c4;
+    width: 60%;
+  }
+  button {
+    width: auto;
+    padding: 0.4rem;
+    color: white;
+    background-color: #6470c4;
+    margin: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0%.3rem;
+  }
+  .social-input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
 
+    .icons {
+      font-size: 2rem;
+      margin: 1rem;
     }
-    button{
-      width:auto;
-      padding:0.4rem;
-      color:white;
-      background-color: #6470c4;
-      margin: 0.2rem;
-      border:none;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 0%.3rem;
-    }
-    .social-input{
-      display: flex;
-     justify-content: flex-start;
-     align-items: center;
-      flex-direction: row;
-      
-      .icons{
-        font-size: 2rem;
-        margin: 1rem;
-      }
-    }
-    a{
-      text-decoration: none;
-      border-radius: 0%.2rem;
-      border: 2px solid #6470c4;
-      color: #6470c4;
-      padding: 0.3rem;
-    }
-    
-`
+  }
+  a {
+    text-decoration: none;
+    border-radius: 0%.2rem;
+    border: 2px solid #6470c4;
+    color: #6470c4;
+    padding: 0.3rem;
+  }
+`;
 export default EditProfile;

@@ -1,8 +1,44 @@
-.container{
-    margin-left: 20rem;
-    @media screen and (max-width:768px) {
-        margin-left: 1rem;
+.main{
+    display: flex;
+}
+.left-aside{
+    width: 15%;
+    background-color: #6470c4;
+    position:fixed;
+    width:20%;
+    height: 100vh;
+
+    ul{
+        font-size: 1.8rem;
+        list-style: none;
+        color: white;
+        margin: 2rem;
+        *{
+            box-sizing: border-box;
+            margin: 2rem; 
+            padding: 1rem;       
+        }
     }
+    .list:hover{
+        background-color: rgba($color: #ffffff, $alpha: 0.4);
+        border-radius: 2rem;
+        width: auto;
+        cursor: pointer;
+    }
+    .post{
+        background-color: rgb(59, 62, 228);
+        border-radius: 2rem;
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+}
+.right{
+    margin-left: calc(20% + 4rem);
 }
 
 @import "./alert.scss";

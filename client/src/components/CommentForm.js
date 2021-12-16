@@ -46,8 +46,8 @@ const CommentForm = ({ id }) => {
 
 const FormPost = styled.div`
   margin-left: 1rem;
-  width: 60%;
-  max-width: 60%;
+  width: 30rem;
+  max-width: 30rem;
   padding: 0.4rem;
   border-bottom: 2px solid #d3d3d3;
   border-left: 2px solid #d3d3d3;

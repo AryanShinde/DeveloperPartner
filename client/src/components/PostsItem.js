@@ -31,7 +31,8 @@ const PostItem = ({
         like.user === authUser ? setLiked(true) : setLiked(false)
       );
     }
-  }, [post.likes, authUser, post, view]);
+    // eslint-disable-next-line
+  }, [authUser, view]);
 
   const likeHandler = () => {
     setLiked(!liked);
@@ -78,8 +79,8 @@ const PostItem = ({
 
           <div className="action-panel">
             <div
-              className={`${liked ? "like-active" : ""} like`}
               onClick={likeHandler}
+              className={`${liked ? "like-active" : ""} like`}
             >
               <BiLike className="icons" />
               <p>Like</p>
@@ -107,8 +108,8 @@ const PostStyled = styled.div`
   margin: 1rem;
   padding: 1rem;
   height: auto;
-  width: 60%;
-  max-width: 60%;
+  width: 30rem;
+  max-width: 30rem;
   border: 2px solid #d3d3d3;
   border-radius: 1rem;
 
