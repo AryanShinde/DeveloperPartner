@@ -1,44 +1,78 @@
 .main{
     display: flex;
+
 }
 .left-aside{
     width: 15%;
     background-color: #6470c4;
     position:fixed;
     width:20%;
+
     height: 100vh;
+    .post a{
+        background-color: rgba($color: #051022, $alpha: 0.4);
+        border-radius: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
 
     ul{
         font-size: 1.8rem;
         list-style: none;
         color: white;
-        margin: 2rem;
         *{
             box-sizing: border-box;
             margin: 2rem; 
             padding: 1rem;       
         }
+        li{
+            margin: 0%;
+            padding: 0%;
+        }
+        .list a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-decoration: none;
+        }
     }
-    .list:hover{
+   
+    li a:hover{
         background-color: rgba($color: #ffffff, $alpha: 0.4);
         border-radius: 2rem;
-        width: auto;
         cursor: pointer;
     }
-    .post{
-        background-color: rgb(59, 62, 228);
-        border-radius: 2rem;
-    }
+    
     .main{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
-    
+   
 }
 .right{
     margin-left: calc(20% + 4rem);
+    // width: 70%;
+}
+@media screen and (max-width:768px) {
+    .left-aside{
+        display: none;
+    }
+    .right{
+        margin-left: 2rem;
+        // width: 100%;
+
+    }
+}
+.right-aside{
+    background-color: #cecef0;
+    position:sticky;
+    top:0;
+    height: 180vh;
 }
 
 @import "./alert.scss";

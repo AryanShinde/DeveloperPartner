@@ -108,8 +108,8 @@ const PostStyled = styled.div`
   margin: 1rem;
   padding: 1rem;
   height: auto;
-  width: 30rem;
-  max-width: 30rem;
+  width: 40rem;
+  max-width: 40rem;
   border: 2px solid #d3d3d3;
   border-radius: 1rem;
 

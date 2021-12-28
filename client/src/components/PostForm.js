@@ -46,8 +46,8 @@ const PostForm = () => {
 
 const FormPost = styled.div`
   margin-left: 1rem;
-  width: 30rem;
-  max-width: 30rem;
+  width: 40rem;
+  max-width: 40rem;
   padding: 1rem;
   border-bottom: 2px solid #d3d3d3;
   border-left: 2px solid #d3d3d3;
