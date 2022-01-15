@@ -45,12 +45,10 @@ const RightStyled = styled.div`
   .whatsHappening,
   .CheckBlogs {
     background-color: #eeeff7;
-    margin: 3.4rem;
-    margin-top: 4rem;
     font-size: 1.2rem;
-    padding: 2rem;
+    margin: 1rem;
+    padding: 1rem;
     border-radius: 2rem;
-    width: auto;
   }
 `;
 export default News;

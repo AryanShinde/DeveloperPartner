@@ -30,6 +30,7 @@ const GetProfiles = () => {
 };
 
 const Profiles = styled.div`
+  width: 80%;
   h1 {
     margin: 2rem 0rem 1rem 0rem;
     color: #4c4c78;
@@ -41,7 +42,7 @@ const Profiles = styled.div`
   .line {
     margin-bottom: 0.4rem;
     background-color: #4c4c78;
-    width: 40rem;
+    width: 100%;
     height: 0.4rem;
     border-radius: 0rem 0rem 1rem 1rem;
   }
@@ -57,7 +58,8 @@ const Profiles = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 80%;
+    width: 100%auto;
+    max-width: 100%;
   }
 `;
 export default GetProfiles;

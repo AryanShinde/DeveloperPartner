@@ -6,8 +6,8 @@ import Nav from "./components/Nav";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
-import Alert from "./components/alert";
 
+import Alert from "./components/alert";
 import { loadUser } from "./actions/auth";
 
 //router
@@ -45,6 +45,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
+
       <Route exact path="/" component={LandingPage} />
       <div className="main">
         {path != "/" && (

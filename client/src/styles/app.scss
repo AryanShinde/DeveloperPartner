@@ -1,77 +1,122 @@
-.main{
+.main {
     display: flex;
 
 }
-.left-aside{
-    width: 15%;
+
+.left-aside {
+    width: 12%;
     background-color: #6470c4;
-    position:fixed;
-    width:20%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    top: 0%;
+    left: 0%;
 
     height: 100vh;
-    .post a{
+
+    .post a {
         background-color: rgba($color: #051022, $alpha: 0.4);
-        border-radius: 2rem;
+        border-radius: 0.4rem;
         display: flex;
         justify-content: center;
         align-items: center;
 
     }
 
-    ul{
-        font-size: 1.8rem;
+    ul {
+        font-size: 1.6rem;
         list-style: none;
         color: white;
-        *{
+
+        * {
             box-sizing: border-box;
-            margin: 2rem; 
-            padding: 1rem;       
+            margin: 1.4rem;
+            padding: 0.8rem;
         }
-        li{
+
+        li {
             margin: 0%;
             padding: 0%;
         }
-        .list a{
+
+        .list a {
             display: flex;
             justify-content: center;
             align-items: center;
             color: #ffffff;
             text-decoration: none;
+            position: relative;
+            z-index: 1;
+
+        }
+
+        .list a::before{
+            content: "";
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 0;
+            z-index: -1;
+            background-color: #c7c7f0;
+            transform: scaleX(0);
+            transition:  0.3s ease-in-out;
+            transform-origin: left;
+            border-radius: 0.2rem;
+
+
+        }
+        .list a:hover::before,
+        .list a:focus::before {
+
+            transform: scaleX(1);
+            
+        }
+        .list a:not(:hover):before{
+            transition: transform 0.3s ease-in-out;
+            transform: scaleX(0);
         }
     }
-   
-    li a:hover{
-        background-color: rgba($color: #ffffff, $alpha: 0.4);
-        border-radius: 2rem;
-        cursor: pointer;
-    }
+
     
-    .main{
+
+    .main {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
-   
+
 }
-.right{
+
+.right {
     margin-left: calc(20% + 4rem);
-    // width: 70%;
 }
+
 @media screen and (max-width:768px) {
-    .left-aside{
+    .left-aside {
         display: none;
     }
-    .right{
+
+    .right {
         margin-left: 2rem;
-        // width: 100%;
+        width: 100%;
 
     }
+
+    .right-aside {
+        display: none;
+    }
 }
-.right-aside{
+
+.right-aside {
     background-color: #cecef0;
-    position:sticky;
-    top:0;
+    width: 80%;
+    ;
+    position: sticky;
+    top: 0;
     height: 180vh;
 }
 

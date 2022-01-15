@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Share from "./Share";
 
 const PostItem = ({
   post: { text, user, _id, likes, comments, date, avatar, name, bio },
@@ -20,6 +21,7 @@ const PostItem = ({
   const posts = useSelector((store) => store.post);
   const post = posts.posts.filter((p) => p._id === _id);
   const single = posts.post;
+  const [share, setShare] = useState(false);
 
   useEffect(() => {
     if (!view) {
@@ -40,67 +42,74 @@ const PostItem = ({
   };
 
   return (
-    <PostStyled>
-      <div className="post">
-        <div className="up">
-          <div className="avatar">
-            <Link to={`/profile/${user}`}>
-              <img src={avatar} alt={name} />
-            </Link>
-          </div>
-          <div className="name">
-            <Link to={`/profile/${user}`}>
-              <h4>{name}</h4>
-            </Link>
-            <small>{bio}</small>
-            <small>
-              <Moment className="date" format="DD/MM/YYYY">
-                {date}
-              </Moment>
-            </small>
-          </div>
-        </div>
-        <div className="down">
-          <div className="main">
-            <div className="text">{text}</div>
-          </div>
-          <div className="infoLine">
-            <div className="likecount">
-              <p>Likes: {likes.length}</p>
-            </div>
-            <div className="commentcount">
-              {" "}
-              {comments.length > 1
-                ? `${comments.length} comments`
-                : `${comments.length} comment`}{" "}
-            </div>
-          </div>
-          <hr />
+    <>
+      <PostStyled>
+        <Share share={share} setShare={setShare} />
 
-          <div className="action-panel">
-            <div
-              onClick={likeHandler}
-              className={`${liked ? "like-active" : ""} like`}
-            >
-              <BiLike className="icons" />
-              <p>Like</p>
+        <div className="post">
+          <div className="up">
+            <div className="avatar">
+              <Link to={`/profile/${user}`}>
+                <img src={avatar} alt={name} />
+              </Link>
             </div>
-            <div className="share">
-              <RiShareForwardLine className="icons" /> <p>Share</p>
+            <div className="name">
+              <Link to={`/profile/${user}`}>
+                <h4>{name}</h4>
+              </Link>
+              <small>{bio}</small>
+              <small>
+                <Moment className="date" format="DD/MM/YYYY">
+                  {date}
+                </Moment>
+              </small>
             </div>
-            <Link to={`/posts/${_id}`} className="comment">
-              <FaRegCommentDots className="icons" /> <p>comment</p>
-            </Link>
-            {authUser === user && (
-              <div className="delete" onClick={() => dispatch(deletePost(_id))}>
-                <AiOutlineDelete />
-                <p>Delete Post</p>
+          </div>
+          <div className="down">
+            <div className="main">
+              <div className="text">{text}</div>
+            </div>
+            <div className="infoLine">
+              <div className="likecount">
+                <p>Likes: {likes.length}</p>
               </div>
-            )}
+              <div className="commentcount">
+                {" "}
+                {comments.length > 1
+                  ? `${comments.length} comments`
+                  : `${comments.length} comment`}{" "}
+              </div>
+            </div>
+            <hr />
+
+            <div className="action-panel">
+              <div
+                onClick={likeHandler}
+                className={`${liked ? "like-active" : ""} like`}
+              >
+                <BiLike className="icons" />
+                <p>Like</p>
+              </div>
+              <div className="share" onClick={() => setShare(!share)}>
+                <RiShareForwardLine className="icons" /> <p>Share</p>
+              </div>
+              <Link to={`/posts/${_id}`} className="comment">
+                <FaRegCommentDots className="icons" /> <p>comment</p>
+              </Link>
+              {authUser === user && (
+                <div
+                  className="delete"
+                  onClick={() => dispatch(deletePost(_id))}
+                >
+                  <AiOutlineDelete />
+                  <p>Delete Post</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </PostStyled>
+      </PostStyled>
+    </>
   );
 };
 
@@ -112,6 +121,16 @@ const PostStyled = styled.div`
   max-width: 40rem;
   border: 2px solid #d3d3d3;
   border-radius: 1rem;
+  .shareActive {
+    opacity: 1;
+    transform: translateZ(-2rem);
+    pointer-events: all;
+  }
+  .shareDeactive {
+    opacity: 0;
+    transform: translateZ(0);
+    pointer-events: none;
+  }
 
   .post {
     display: flex;
