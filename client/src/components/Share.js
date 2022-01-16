@@ -1,6 +1,5 @@
 import React from "react";
 import facebook from "../images/facebook.png";
-import instagram from "../images/instagram.png";
 import linkedin from "../images/linkedin.png";
 import twitter from "../images/twitter.png";
 import whatsapp from "../images/whatsapp.png";
@@ -27,17 +26,22 @@ const Share = (props) => {
           </div>
           <div className="icons">
             <a
+              rel="noreferrer"
               href={`https://api.whatsapp.com/send?text=${window.location}/${props.id}`}
+              target="_blank"
             >
               <img src={whatsapp} alt="" />
             </a>
 
             <a
+              rel="noreferrer"
+              target="_blank"
               href={`https://www.facebook.com/sharer/sharer.php?u=${window.location}/${props.id}`}
             >
               <img src={facebook} alt="" />
             </a>
             <a
+              rel="noreferrer"
               href={`https://twitter.com/intent/tweet?url=${window.location}/${props.id}&text=Check this post on devpartner: `}
               data-lang="en"
               data-show-count="false"
@@ -47,6 +51,8 @@ const Share = (props) => {
             </a>
 
             <a
+              rel="noreferrer"
+              target="_blank"
               href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location}/${props.id}`}
             >
               <img src={linkedin} alt="" />

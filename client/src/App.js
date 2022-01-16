@@ -40,7 +40,6 @@ function App() {
 
   useEffect(() => {
     dispatch(loadUser());
-    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (
@@ -49,7 +48,7 @@ function App() {
 
       <Route exact path="/" component={LandingPage} />
       <div className="main">
-        {path != "/" && (
+        {path !== "/" && (
           <div className="left-aside">
             <LeftAside />
           </div>

@@ -7,7 +7,7 @@ const GithubProfile = ({ data }) => {
       <div className="left">
         <h4>
           <AiOutlineGithub className="icon" />
-          <a target="_blank" href={data.html_url}>
+          <a rel="noreferrer" target="_blank" href={data.html_url}>
             Check project
           </a>
         </h4>

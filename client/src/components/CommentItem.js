@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
-import Moment from "react-moment";
 import styled from "styled-components";
 import { deleteComment } from "../actions/post";
 const CommentItem = ({

@@ -9,6 +9,7 @@ const PostList = () => {
   useEffect(() => {
     dispatch(GetPost());
     window.scrollTo(0, 0);
+    // eslint-disable-next-line
   }, []);
   const post = useSelector((store) => store.post);
   const auth = useSelector((store) => store.auth);

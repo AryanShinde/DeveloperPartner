@@ -35,13 +35,13 @@ const GuestProfile = () => {
   }, [dispatch, path]);
   useEffect(() => {
     if (curr?.githubusername) {
-      console.log(curr?.githubusername);
+      console.log(curr);
       dispatch(githubAction(curr?.githubusername));
     } else {
       dispatch({
         type: "GITHUB_ERROR",
       });
-    }
+    } // eslint-disable-next-line
   }, [curr]);
 
   if (!user.isAuthenticated) {
@@ -97,43 +97,47 @@ const GuestProfile = () => {
                   {curr.social && (
                     <div className="socials">
                       {curr.social.linkedin && (
-                        <Link
+                        <a
                           target="_blank"
                           rel="noreferrer"
-                          href={curr.linkedin}
+                          href={curr.social.linkedin}
                         >
                           <BsLinkedin className="icons linkedin" />
-                        </Link>
+                        </a>
                       )}
                       {curr.social.facebook && (
                         <a
                           target="_blank"
                           rel="noreferrer"
-                          href={curr.facebook}
+                          href={curr.social.facebook}
                         >
                           <BsFacebook className="icons facebook" />
                         </a>
                       )}
                       {curr.social.twitter && (
-                        <Link
+                        <a
                           target="_blank"
                           rel="noreferrer"
-                          to={{ pathname: curr.twitter }}
+                          href={curr.social.twitter}
                         >
                           <BsTwitter className="icons twitter" />
-                        </Link>
+                        </a>
                       )}
                       {curr.social.instagram && (
                         <a
                           target="_blank"
                           rel="noreferrer"
-                          href={curr.instagram}
+                          href={curr.social.instagram}
                         >
                           <BsInstagram className="icons instagram" />
                         </a>
                       )}
                       {curr.social.youtube && (
-                        <a target="_blank" rel="noreferrer" href={curr.youtube}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={curr.social.youtube}
+                        >
                           <BsYoutube className="icons youtube" />
                         </a>
                       )}

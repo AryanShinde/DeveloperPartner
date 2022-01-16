@@ -82,6 +82,7 @@ const NavStyled = styled.div`
   position: sticky;
   z-index: 2;
   top: 0;
+  font-size: 1.2rem;
   .res-nav {
     display: none;
     pointer-events: none;
@@ -104,7 +105,7 @@ const NavStyled = styled.div`
     }
   }
   @media (max-width: 768px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
     height: 5rem;
     position: relative;
     width: 100%;
@@ -125,14 +126,12 @@ const NavStyled = styled.div`
       .open {
         transform: translateY(0rem);
         transition: 1s ease-in-out;
-        opacity: 1;
         width: 100%;
         pointer-events: all;
       }
       .closed {
         transform: translateY(-28rem);
         transition: 1s ease-in-out;
-        opacity: 0;
         width: 100%;
       }
       .right-res {

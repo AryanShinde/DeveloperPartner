@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import ProfileItem from "./ProfileItem";
 import Loading from "./Loading";
-import { FcSearch } from "react-icons/fc";
 const GetProfiles = () => {
   let profile = useSelector((store) => store.profiles.profiles);
   const isLoading = useSelector((store) => store.profiles.isLoading);
@@ -17,6 +16,8 @@ const GetProfiles = () => {
   const onChangeHandler = (e) => {
     if (e.target.value.length > 0) {
       setSearch(true);
+    } else {
+      setSearch(false);
     }
     setVal(profile.filter((p) => p.user.name.includes(e.target.value)));
   };

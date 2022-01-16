@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import home from "../images/home.svg";
 import { BsCodeSlash } from "react-icons/bs";
 import hero1 from "../images/hero1.svg";
 import wave1 from "../images/wave1.svg";
@@ -11,24 +9,39 @@ import wave2 from "../images/wave2.svg";
 import { BsTwitter } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
+import { motion } from "framer-motion";
+import useScroll from "../Animations/useScroll";
+import {
+  titleAnime,
+  titleAnime2,
+  titleAnime3,
+  leftSlide,
+  rightSlide,
+} from "../Animations/animations";
 
 const Home = () => {
-  const authState = useSelector((state) => state.auth);
-  const isAuthenticated = authState.isAuthenticated;
-  const loading = authState.isLoading;
   const tag = "<DevPartner/>";
-
+  const [controls, element] = useScroll();
+  const [controls1, element1] = useScroll();
+  const [controls2, element2] = useScroll();
   return (
     <HomeImg>
       <Section1>
-        <p className="title">
+        <motion.p
+          variants={titleAnime}
+          initial="before"
+          animate="after"
+          className="title"
+        >
           Tired of finding a perfect project partner
           <br /> for your next perfect project?
-        </p>
-        <h2>Want to network and make projects with developers?</h2>
-        <h3>
+        </motion.p>
+        <motion.h2 variants={titleAnime2} initial="before" animate="after">
+          Want to network and make projects with developers?
+        </motion.h2>
+        <motion.h3 variants={titleAnime3} initial="before" animate="after">
           <span>DevPartner</span> is a Site to go!
-        </h3>
+        </motion.h3>
         <div className="explore">
           <Link to="profiles">Explore</Link>
           <BsCodeSlash className="code" />
@@ -36,53 +49,96 @@ const Home = () => {
       </Section1>
       <Section2>
         <img className="wave1" src={wave1} alt="" />
-        <div className="left-1">
+        <motion.div
+          variants={leftSlide}
+          initial="before"
+          animate={controls}
+          ref={element}
+          className="left-1"
+        >
           <img src={hero1} alt="" />
-        </div>
-        <div className="right-1">
+        </motion.div>
+        <motion.div
+          variants={rightSlide}
+          animate={controls}
+          initial="before"
+          ref={element}
+          className="right-1"
+        >
           <h2>
             Create, Like, Share and comment on posts. Network with like-minded
             people. Grow with them and certainly, <span>have fun</span>.
           </h2>
-        </div>
+        </motion.div>
       </Section2>
       <Section3>
         <img className="wave2" src={wave2} alt="" />
-        <div className="left-2">
+        <motion.div
+          variants={leftSlide}
+          initial="before"
+          animate={controls1}
+          ref={element1}
+          className="left-2"
+        >
           <h1>Find-Connect-Create</h1>
           <h2>
             This is what we believe in.
             <br /> "Apes together strong! "
           </h2>
-        </div>
-        <div className="right-2">
+        </motion.div>
+        <motion.div
+          variants={rightSlide}
+          animate={controls1}
+          initial="before"
+          ref={element1}
+          className="right-2"
+        >
           <img src={hero2} alt="" />
-        </div>
+        </motion.div>
       </Section3>
       <Footer>
-        <div className="up">
+        <motion.div
+          variants={titleAnime}
+          initial="before"
+          animate={controls2}
+          ref={element2}
+          className="up"
+        >
           <h1>{tag}</h1>
-        </div>
+        </motion.div>
         <div className="down">
           <h2>
             Made with ❤️ by{" "}
-            <a target="_blank" href="https://shindearyan.netlify.app">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://shindearyan.netlify.app"
+            >
               Aryan Shinde
             </a>
           </h2>
           <p>Connect with me here: </p>
           <br />
           <div className="socials">
-            <a target="_blank" href="https://twitter.com/aryan_aag">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://twitter.com/aryan_aag"
+            >
               <BsTwitter className="icon twitter" />
             </a>
             <a
               target="_blank"
+              rel="noreferrer"
               href="https://www.linkedin.com/in/aryan-shinde-14ab58201/"
             >
               <BsLinkedin className="icon linkedin" />
             </a>
-            <a target="_blank" href="https://github.com/AryanShinde">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/AryanShinde"
+            >
               <BsGithub className="icon" />
             </a>
           </div>
