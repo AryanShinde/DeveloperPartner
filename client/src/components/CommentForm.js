@@ -45,14 +45,14 @@ const CommentForm = ({ id }) => {
 };
 
 const FormPost = styled.div`
-  margin-left: 1rem;
+  margin-left: 0.2rem;
   width: 30rem;
   max-width: 30rem;
   padding: 0.4rem;
-  border-bottom: 2px solid #d3d3d3;
-  border-left: 2px solid #d3d3d3;
+  /* border-bottom: 2px solid #d3d3d3; */
+  /* border-left: 2px solid #d3d3d3;
   border-right: 2px solid #d3d3d3;
-  border-radius: 1rem;
+  border-radius: 1rem; */
 
   .up {
     display: flex;
@@ -63,7 +63,7 @@ const FormPost = styled.div`
       margin: 0.3rem;
     }
     input {
-      padding: 0.4rem;
+      padding: 0.7rem;
       font-size: 20px;
       border: none;
       width: 100%;
@@ -71,8 +71,8 @@ const FormPost = styled.div`
       outline: none;
     }
     img {
-      width: 6rem;
-      height: 6rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
     }
   }

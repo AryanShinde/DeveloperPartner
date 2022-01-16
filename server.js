@@ -21,7 +21,14 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profiles", require("./routes/api/profiles"));
 app.use("/api/posts", require("./routes/api/posts"));
 app.use(cors());
-
+https: app.options("*", cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: false,
+    exposeHeaders: ["set-cookie"],
+  })
+);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`port running on ${PORT}`));

@@ -11,7 +11,9 @@ const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const dispatch = useDispatch();
-  console.log(path);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     dispatch(getSinglePost(path));
   }, [dispatch, path]);

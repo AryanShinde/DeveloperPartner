@@ -88,5 +88,9 @@ const FormPost = styled.div`
       cursor: pointer;
     }
   }
+  @media (max-width: 768px) {
+    width: 20rem;
+    max-width: 20rem;
+  }
 `;
 export default PostForm;

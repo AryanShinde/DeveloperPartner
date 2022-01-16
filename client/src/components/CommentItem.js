@@ -19,27 +19,30 @@ const CommentItem = ({
             <img src={avatar} alt={name} />
           </div>
           <div className="name">
-            <h4>{name}</h4>
-            <small>
+            <h5>
+              <b>{name}</b>
+            </h5>
+            <div className="down">
+              <div className="main">
+                <div className="text">{text}</div>
+              </div>
+              <hr />
+            </div>
+
+            {/* <small>
               <Moment className="date" format="DD/MM/YYYY">
                 {date}
               </Moment>
-            </small>
+            </small> */}
           </div>
         </div>
 
-        <div className="down">
-          <div className="main">
-            <div className="text">{text}</div>
-          </div>
-          <hr />
-        </div>
         {authUser === user && (
           <div
             onClick={() => dispatch(deleteComment(postId, _id))}
             className="delete"
           >
-            <AiOutlineDelete />
+            <AiOutlineDelete className="delete-icon" />
           </div>
         )}
       </div>
@@ -48,12 +51,12 @@ const CommentItem = ({
 };
 
 const CommentItemStyled = styled.div`
-  margin: 1rem;
+  margin: 0.4rem;
   padding: 1rem;
   height: auto;
   width: 70%;
   max-width: 70%;
-  border: 2px solid #d3d3d3;
+  /* border: 2px solid #d3d3d3; */
   border-radius: 1rem;
   position: relative;
   .post {
@@ -64,8 +67,8 @@ const CommentItemStyled = styled.div`
   }
   .up {
     img {
-      width: 6rem;
-      height: 6rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
       margin-right: 0.8rem;
     }
@@ -74,18 +77,18 @@ const CommentItemStyled = styled.div`
     }
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
   }
   .down {
-    margin: 0.2rem 0rem 0rem 0.4rem;
+    margin: 0.4rem 0rem 0rem -1rem;
     display: flex;
     height: auto;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
-    max-width: 100%;
+    width: auto;
+    max-width: auto;
     flex-direction: column;
-    padding: 0.4rem;
+    /* padding: 0.4rem; */
     .main {
       max-width: 100%;
       width: 100%;
@@ -99,7 +102,7 @@ const CommentItemStyled = styled.div`
       height: 2px;
       background-color: #d3d3d3;
       border: none;
-      width: 100%;
+      max-width: auto;
       margin: 0.2rem 0.2rem 0.4rem 0.2rem;
     }
   }
@@ -112,6 +115,10 @@ const CommentItemStyled = styled.div`
     transition: 0.4s ease-in-out;
     &:hover {
       color: red;
+    }
+    .delete-icon {
+      width: 1.2rem;
+      height: 1.2rem;
     }
   }
 `;

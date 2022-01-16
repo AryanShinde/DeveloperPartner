@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/auth";
 
 import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Nav = () => {
   const authState = useSelector((state) => state.auth);
   const isAuthenticated = authState.isAuthenticated;
   const loading = authState.isLoading;
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const logged = (
@@ -59,6 +61,14 @@ const Nav = () => {
       {!loading && (
         <div className="right">{isAuthenticated ? logged : guest}</div>
       )}
+      <div className="res-nav">
+        <GiHamburgerMenu onClick={() => setOpen(!open)} className="hamburger" />
+        <div className={`${open ? "open" : "closed"}`}>
+          {!loading && (
+            <div className="right-res">{isAuthenticated ? logged : guest}</div>
+          )}
+        </div>
+      </div>
     </NavStyled>
   );
 };
@@ -72,6 +82,10 @@ const NavStyled = styled.div`
   position: sticky;
   z-index: 2;
   top: 0;
+  .res-nav {
+    display: none;
+    pointer-events: none;
+  }
   a {
     text-decoration: none;
     color: white;
@@ -86,6 +100,61 @@ const NavStyled = styled.div`
       a {
         color: white;
         text-decoration: none;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    height: 5rem;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    .left,
+    .right {
+      display: none;
+    }
+    .res-nav {
+      display: block;
+      transition: 0.3s ease-in-out;
+      width: 100%;
+      .hamburger {
+        font-size: 2rem;
+        cursor: pointer;
+        pointer-events: all;
+      }
+      .open {
+        transform: translateY(0rem);
+        transition: 1s ease-in-out;
+        opacity: 1;
+        width: 100%;
+        pointer-events: all;
+      }
+      .closed {
+        transform: translateY(-28rem);
+        transition: 1s ease-in-out;
+        opacity: 0;
+        width: 100%;
+      }
+      .right-res {
+        width: 100%;
+
+        ul {
+          margin: 0;
+          flex-direction: column;
+          li {
+            margin: 1rem;
+            /* padding: 1rem; */
+          }
+          background-color: #6470c4;
+          height: auto;
+          border-radius: 1rem;
+          padding: 1rem;
+        }
+      }
+    }
+    ul {
+      li {
+        margin: 0rem 0.5rem;
       }
     }
   }

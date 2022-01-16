@@ -44,7 +44,7 @@ const PostItem = ({
   return (
     <>
       <PostStyled>
-        <Share share={share} setShare={setShare} />
+        <Share id={_id} share={share} setShare={setShare} />
 
         <div className="post">
           <div className="up">
@@ -102,7 +102,7 @@ const PostItem = ({
                   onClick={() => dispatch(deletePost(_id))}
                 >
                   <AiOutlineDelete />
-                  <p>Delete Post</p>
+                  <p>Delete</p>
                 </div>
               )}
             </div>
@@ -225,6 +225,39 @@ const PostStyled = styled.div`
 
     100% {
       transform: scale(1.2);
+    }
+  }
+  @media (max-width: 768px) {
+    width: 20rem;
+    max-width: 20rem;
+    font-size: 0.8rem;
+    .up {
+      img {
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+    }
+
+    .action-panel {
+      width: 80%;
+      max-width: 80%;
+      .icons {
+        font-size: 12px;
+      }
+      .like,
+      .comment,
+      .share,
+      .delete {
+        margin: 0.2rem;
+      }
+    }
+    .down {
+      margin: 0;
+    }
+    .main {
+      .text {
+        margin-bottom: -0.2rem;
+      }
     }
   }
 `;

@@ -49,7 +49,7 @@ const Profile = styled.div`
   padding: 1rem;
   margin: 2rem 2rem 2rem 0rem;
   border-radius: 1rem;
-  border-bottom: 8px solid #6470c4;
+  /* border-bottom: 8px solid #6470c4; */
   @media (max-width: 768px) {
     max-width: 80%;
     width: auto;

@@ -21,22 +21,34 @@ const Share = (props) => {
           />
           <div className="share">
             <h2>Share this Post</h2>
-            <h4>{window.location.href}</h4>
+            <h4>
+              {window.location.href}/{props.id}
+            </h4>
           </div>
           <div className="icons">
-            <a href={`https://api.whatsapp.com/send?text=${window.location}`}>
+            <a
+              href={`https://api.whatsapp.com/send?text=${window.location}/${props.id}`}
+            >
               <img src={whatsapp} alt="" />
             </a>
-            <a href="">
-              <img src={instagram} alt="" />
-            </a>
-            <a href="">
+
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${window.location}/${props.id}`}
+            >
               <img src={facebook} alt="" />
             </a>
-            <a href="http://" target="_blank" rel="noopener noreferrer">
+            <a
+              href={`https://twitter.com/intent/tweet?url=${window.location}/${props.id}&text=Check this post on devpartner: `}
+              data-lang="en"
+              data-show-count="false"
+              target="_blank"
+            >
               <img src={twitter} alt="" />
             </a>
-            <a href="">
+
+            <a
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location}/${props.id}`}
+            >
               <img src={linkedin} alt="" />
             </a>
           </div>
@@ -100,6 +112,11 @@ const ShareStyled = styled.div`
   .shareDeactive {
     opacity: 0;
     pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .card {
+      margin-top: 20%;
+    }
   }
 `;
 export default Share;

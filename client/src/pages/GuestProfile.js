@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import ProfileExperience from "../components/ProfileExperience";
 import ProfileEducation from "../components/ProfileEducation";
-// import { githubAction } from "../actions/githubRepo";
+import { githubAction } from "../actions/githubRepo";
 import { BsPatchCheckFill } from "react-icons/bs";
+import GithubProfile from "../components/githubProfile";
 
 import {
   BsFacebook,
@@ -25,18 +26,27 @@ const GuestProfile = () => {
   const path = location.pathname.split("/")[2];
   const profiles = useSelector((store) => store.profiles);
   const user = useSelector((store) => store.auth);
+  const repos = useSelector((store) => store.profiles.repos);
   const curr = profiles.profile;
   const history = useHistory();
 
   useEffect(() => {
     dispatch(guestProfile(path));
   }, [dispatch, path]);
+  useEffect(() => {
+    if (curr?.githubusername) {
+      console.log(curr?.githubusername);
+      dispatch(githubAction(curr?.githubusername));
+    } else {
+      dispatch({
+        type: "GITHUB_ERROR",
+      });
+    }
+  }, [curr]);
+
   if (!user.isAuthenticated) {
     history.push("/signup");
   }
-  // if (curr) {
-  //   dispatch(githubAction(curr.user.name));
-  // }
 
   return (
     <>
@@ -53,7 +63,7 @@ const GuestProfile = () => {
             <Link className="back" to="/profiles">
               Go back to Browsing
             </Link>
-            {user.user._id === profiles.profile.user._id && (
+            {user?.user?._id === profiles?.profile?.user?._id && (
               <Link className="edit" to="/edit-profile">
                 Edit your Profile
               </Link>
@@ -169,10 +179,19 @@ const GuestProfile = () => {
                 <h4>No Education Credentials</h4>
               )}
             </div>
-            <div className="githubRepo">
-              <h1>Github repo</h1>
-              {/* <GithubProfile data={"AryanShinde"} /> */}
-            </div>
+            {repos.length !== 0 ? (
+              <div className="githubRepo">
+                <h1>Github repo</h1>
+                {repos.map((repo) => (
+                  <GithubProfile data={repo} />
+                ))}
+              </div>
+            ) : (
+              <h4>
+                You have not added your github Name{" "}
+                <Link to="/edit-profile">Add here</Link>
+              </h4>
+            )}
           </Main>
         </Profile>
       )}
@@ -205,7 +224,8 @@ const Profile = styled.div`
 `;
 const Main = styled.div`
   background-color: #eeeff7;
-  width: 70%;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: 1rem;
   box-shadow: 4px 4px 30px #d3d3d3;
@@ -292,7 +312,7 @@ const Top = styled.div`
       justify-content: flex-end;
       flex-direction: column;
       .skills {
-        width: auto;
+        width: 100%;
         height: auto;
         display: flex;
         justify-content: center;

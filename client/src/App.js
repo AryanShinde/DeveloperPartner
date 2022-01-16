@@ -40,6 +40,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadUser());
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (
