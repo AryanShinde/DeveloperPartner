@@ -83,7 +83,7 @@ const Home = () => {
           <h1>Find-Connect-Create</h1>
           <h2>
             This is what we believe in.
-            <br /> "Apes together strong! "
+            <br /> "Apes together strong!"
           </h2>
         </motion.div>
         <motion.div
