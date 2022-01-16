@@ -7,10 +7,6 @@ const app = express();
 //connect mongoDB
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("server setup");
-});
-
 //middleWare
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
