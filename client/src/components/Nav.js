@@ -118,6 +118,7 @@ const NavStyled = styled.div`
       display: block;
       transition: 0.3s ease-in-out;
       width: 100%;
+      z-index: 10;
       .hamburger {
         font-size: 2rem;
         cursor: pointer;
@@ -128,6 +129,8 @@ const NavStyled = styled.div`
         transition: 1s ease-in-out;
         width: 100%;
         pointer-events: all;
+        position: relative;
+        z-index: 1111;
       }
       .closed {
         transform: translateY(-28rem);
@@ -136,10 +139,12 @@ const NavStyled = styled.div`
       }
       .right-res {
         width: 100%;
-
+        z-index: 11111;
+        position: relative;
         ul {
           margin: 0;
           flex-direction: column;
+          z-index: 11111;
           li {
             margin: 1rem;
             /* padding: 1rem; */
