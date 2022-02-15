@@ -3,16 +3,19 @@ import PostList from "../components/PostList";
 import { useDispatch } from "react-redux";
 import { GetPost } from "../actions/post";
 import PostForm from "../components/PostForm";
+import Layout from "../layout";
 const Post = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetPost());
   }, [dispatch]);
   return (
-    <div className="post">
-      <PostForm />
-      <PostList />
-    </div>
+    <Layout>
+      <div style={{ marginLeft: "4rem" }} className="post">
+        <PostForm />
+        <PostList />
+      </div>
+    </Layout>
   );
 };
 export default Post;

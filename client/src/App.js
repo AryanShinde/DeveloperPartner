@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import "./styles/app.scss";
 import "./pages/LandingPage";
 import Nav from "./components/Nav";
 import LandingPage from "./pages/LandingPage";
@@ -48,49 +47,29 @@ function App() {
 
       <Route exact path="/" component={LandingPage} />
       <div className="main">
-        {path !== "/" && (
-          <div className="left-aside">
-            <LeftAside />
-          </div>
-        )}
-        <section className="right">
-          <Alert />
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={SignUp} />
-            <Route exact path="/profiles" component={Profiles} />
-            <Route exact path="/profile/:id" component={GuestProfile} />
-            <PrivateRouter exact path="/dashboard" component={Dasboard} />
-            <PrivateRouter
-              exact
-              path="/create-profile"
-              component={CreateProfilePage}
-            />
-            <PrivateRouter exact path="/edit-profile" component={EditProfile} />
-            <PrivateRouter
-              exact
-              path="/add-experience"
-              component={AddExperience}
-            />
-            <PrivateRouter
-              exact
-              path="/add-education"
-              component={AddEducation}
-            />
-            {/* <PrivateRouter exact path="/user" component={GuestProfile} /> */}
-            <PrivateRouter exact path="/posts" component={Post} />
-            <PrivateRouter exact path="/posts/:id" component={SinglePost} />
-          </Switch>
-        </section>
-        {path !== "/login" &&
-          path !== "/signup" &&
-          path !== "/dashboard" &&
-          path !== "/" &&
-          path.split("/")[1] !== "profile" && (
-            <div className="right-aside">
-              <News />
-            </div>
-          )}
+        <Alert />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route exact path="/profiles" component={Profiles} />
+          <Route exact path="/profile/:id" component={GuestProfile} />
+          <PrivateRouter exact path="/dashboard" component={Dasboard} />
+          <PrivateRouter
+            exact
+            path="/create-profile"
+            component={CreateProfilePage}
+          />
+          <PrivateRouter exact path="/edit-profile" component={EditProfile} />
+          <PrivateRouter
+            exact
+            path="/add-experience"
+            component={AddExperience}
+          />
+          <PrivateRouter exact path="/add-education" component={AddEducation} />
+          {/* <PrivateRouter exact path="/user" component={GuestProfile} /> */}
+          <PrivateRouter exact path="/posts" component={Post} />
+          <PrivateRouter exact path="/posts/:id" component={SinglePost} />
+        </Switch>
       </div>
     </div>
   );

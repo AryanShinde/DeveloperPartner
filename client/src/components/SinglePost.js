@@ -7,6 +7,8 @@ import { getSinglePost } from "../actions/post";
 import { useLocation } from "react-router";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
+import styled from "styled-components";
+import Layout from "../layout";
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -27,22 +29,29 @@ const SinglePost = () => {
     return <Loading />;
   }
   return (
-    <>
-      <PostItem post={post} view={true} authUser={authUser} key={post._id} />
-      <CommentForm id={post._id} />
-      {post.comments.length > 0 ? (
-        post.comments.map((comment) => (
-          <CommentItem
-            key={comment._id}
-            authUser={authUser}
-            comment={comment}
-            postId={post._id}
-          />
-        ))
-      ) : (
-        <></>
-      )}
-    </>
+    <Layout>
+      <SinglePostStyled>
+        <PostItem post={post} view={true} authUser={authUser} key={post._id} />
+        <CommentForm id={post._id} />
+        {post?.comments?.length > 0 ? (
+          post?.comments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              authUser={authUser}
+              comment={comment}
+              postId={post._id}
+            />
+          ))
+        ) : (
+          <></>
+        )}
+      </SinglePostStyled>
+    </Layout>
   );
 };
+
+const SinglePostStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export default SinglePost;

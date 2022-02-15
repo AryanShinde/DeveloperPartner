@@ -19,6 +19,7 @@ import {
   BsInstagram,
 } from "react-icons/bs";
 import styled from "styled-components";
+import Layout from "../layout";
 
 const GuestProfile = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const GuestProfile = () => {
   }
 
   return (
-    <>
+    <Layout>
       {profiles.isLoading ||
       user.isAuthenticated === false ||
       user.isLoading ||
@@ -199,7 +200,7 @@ const GuestProfile = () => {
           </Main>
         </Profile>
       )}
-    </>
+    </Layout>
   );
 };
 

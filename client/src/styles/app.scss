@@ -4,6 +4,7 @@
 }
 body{
     scroll-behavior: smooth;
+    margin: 0;
 }
 
 .left-aside {
@@ -116,11 +117,11 @@ body{
 
 .right-aside {
     background-color: #cecef0;
-    width: 80%;
-    ;
-    position: sticky;
+    width: 20%;
+    position: fixed;
     top: 0;
+    right:0;
     height: 180vh;
-}
+    margin:0}
 
 @import "./alert.scss";
