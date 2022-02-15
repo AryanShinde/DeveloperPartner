@@ -1,4 +1,5 @@
 node_modules/
 config.env
-.env
-config/production.json/
+.env/
+config/production.json
+config/default.json
