@@ -1,5 +1,6 @@
 .main {
     display: flex;
+    flex-direction: column;
 
 }
 body{
@@ -96,7 +97,7 @@ body{
 }
 
 .right {
-    margin-left: calc(20% + 4rem);
+    margin-left: calc(20%)
 }
 
 @media screen and (max-width:768px) {

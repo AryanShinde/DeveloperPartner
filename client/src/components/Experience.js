@@ -24,11 +24,11 @@ const Experience = ({ experience }) => {
           <button
             onClick={() => dispatch(deleteExperience(exp._id))}
             style={{
-              background: "#ff6b7f",
-              border: "none",
               padding: "0.5rem",
-              color: "white",
+              color: "#d11a2a",
+              backgroundColor: "white",
               borderRadius: "0.4rem",
+              border: "2px solid #d11a2a",
               margin: "0.2rem",
               cursor: "pointer",
             }}
@@ -51,6 +51,7 @@ const Experience = ({ experience }) => {
           <th> Title</th>
           <th>From</th>
           <th>To</th>
+          <th></th>
         </tr>
         <tbody>{Experiences}</tbody>
       </table>

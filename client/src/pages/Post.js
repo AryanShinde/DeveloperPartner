@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { GetPost } from "../actions/post";
 import PostForm from "../components/PostForm";
 import Layout from "../layout";
+import styled from "styled-components";
 const Post = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -11,11 +12,18 @@ const Post = () => {
   }, [dispatch]);
   return (
     <Layout>
-      <div style={{ marginLeft: "4rem" }} className="post">
+      <StyledPosts>
         <PostForm />
         <PostList />
-      </div>
+      </StyledPosts>
     </Layout>
   );
 };
+
+const StyledPosts = styled.div`
+  margin-left: 4rem;
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+  }
+`;
 export default Post;

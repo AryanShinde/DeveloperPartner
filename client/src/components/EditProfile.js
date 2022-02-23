@@ -271,6 +271,10 @@ const EditProfile = () => {
 };
 
 const ProfileStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   h1 {
     color: #4c4c78;
     margin-bottom: 1rem;

@@ -8,7 +8,7 @@ import { addLike, deletePost } from "../actions/post";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Share from "./Share";
 
 const PostItem = ({
@@ -22,6 +22,7 @@ const PostItem = ({
   const post = posts.posts.filter((p) => p._id === _id);
   const single = posts.post;
   const [share, setShare] = useState(false);
+  const navigate = useHistory();
 
   useEffect(() => {
     if (!view) {
@@ -99,7 +100,11 @@ const PostItem = ({
               {authUser === user && (
                 <div
                   className="delete"
-                  onClick={() => dispatch(deletePost(_id))}
+                  onClick={() => {
+                    console.log("here");
+                    navigate.push("/posts");
+                    dispatch(deletePost(_id));
+                  }}
                 >
                   <AiOutlineDelete />
                   <p>Delete</p>

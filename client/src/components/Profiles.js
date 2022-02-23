@@ -23,13 +23,15 @@ const GetProfiles = () => {
   };
   return (
     <Profiles>
-      <h1>Developers</h1>
-      <div className="line"></div>
-      <input
-        placeholder="Browse some of the fine developers 🔎"
-        type="text"
-        onChange={(e) => onChangeHandler(e)}
-      />
+      <div className="top-search">
+        <h1>Developers</h1>
+        <div className="line"></div>
+        <input
+          placeholder="Browse some of the fine developers 🔎"
+          type="text"
+          onChange={(e) => onChangeHandler(e)}
+        />
+      </div>
       {search && (
         <div className="search">
           <h2>Searched users</h2>
@@ -57,6 +59,14 @@ const GetProfiles = () => {
 
 const Profiles = styled.div`
   width: 80%;
+  .top-search {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+  }
   h1 {
     margin: 2rem 0rem 1rem 0rem;
     color: #4c4c78;

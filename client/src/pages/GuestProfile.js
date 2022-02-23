@@ -205,6 +205,8 @@ const GuestProfile = () => {
 };
 
 const Profile = styled.div`
+  width: 75%;
+  margin: 0rem auto;
   .act-button {
     margin: 2rem 0rem;
     display: flex;
@@ -214,9 +216,11 @@ const Profile = styled.div`
     .back {
       background-color: #eeeff7;
       border-radius: 0.5rem;
-      padding: 0.8rem;
+      padding: 0.8rem 0.5rem;
       text-decoration: none;
       color: #6470c4;
+      line-break: unset;
+      line-height: 1rem;
     }
     .edit {
       background-color: #6470c4;
@@ -229,8 +233,10 @@ const Profile = styled.div`
 `;
 const Main = styled.div`
   background-color: #eeeff7;
-  width: 100%;
-  max-width: 100%;
+
+  width: 42rem;
+  max-width: 42rem;
+  margin-left: -1rem;
   height: auto;
   border-radius: 1rem;
   box-shadow: 4px 4px 30px #d3d3d3;
@@ -316,8 +322,9 @@ const Top = styled.div`
       display: flex;
       justify-content: flex-end;
       flex-direction: column;
+      width: 40rem;
+      max-width: 40rem;
       .skills {
-        width: 100%;
         height: auto;
         display: flex;
         justify-content: center;

@@ -53,5 +53,9 @@ const SinglePost = () => {
 const SinglePostStyled = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 4rem;
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 export default SinglePost;

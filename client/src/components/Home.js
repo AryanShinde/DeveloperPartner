@@ -33,8 +33,12 @@ const Home = () => {
           animate="after"
           className="title"
         >
-          Tired of finding a perfect project partner
-          <br /> for your next perfect project?
+          Tired of finding a perfect{" "}
+          <span style={{ color: "#6470c4", fontWeight: "800" }}>
+            project partner
+          </span>
+          <br /> for your next{" "}
+          <span style={{ color: "#6470c4" }}>perfect project</span>?
         </motion.p>
         <motion.h2 variants={titleAnime2} initial="before" animate="after">
           Want to network and make projects with developers?

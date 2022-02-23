@@ -24,9 +24,6 @@ import Profiles from "./pages/Profiles";
 import GuestProfile from "./pages/GuestProfile";
 import Post from "./pages/Post";
 import SinglePost from "./components/SinglePost";
-import LeftAside from "./components/LeftAside";
-import News from "./components/News";
-import { useLocation } from "react-router";
 
 if (localStorage.token) {
   setToken(localStorage.token);
@@ -34,8 +31,6 @@ if (localStorage.token) {
 
 function App() {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const path = location.pathname;
 
   useEffect(() => {
     dispatch(loadUser());

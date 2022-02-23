@@ -73,7 +73,20 @@ const Dashboard = () => {
         <Experience experience={userProfile.experience} />
         <Education education={userProfile.education} />
         <div className="delete-profile">
-          <button onClick={deleteProfileFun}>Delete Profile</button>
+          <button
+            style={{
+              padding: "0.5rem",
+              color: "#d11a2a",
+              backgroundColor: "white",
+              borderRadius: "0.4rem",
+              border: "2px solid #d11a2a",
+              cursor: "pointer",
+              marginBottom: "4rem",
+            }}
+            onClick={deleteProfileFun}
+          >
+            Delete Profile
+          </button>
         </div>
       </div>
     );
@@ -113,7 +126,7 @@ const Dashboard = () => {
 const DashboardStyle = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   .main-profile {
     display: flex;

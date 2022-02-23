@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { GetPost } from "../actions/post";
 const PostList = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(GetPost());
     window.scrollTo(0, 0);

@@ -38,6 +38,7 @@ const CommentItem = ({
 
         {authUser === user && (
           <div
+            title="delete comment"
             onClick={() => dispatch(deleteComment(postId, _id))}
             className="delete"
           >
@@ -56,6 +57,7 @@ const CommentItemStyled = styled.div`
   width: 70%;
   max-width: 70%;
   /* border: 2px solid #d3d3d3; */
+  box-shadow: 2px 2px 10px #d3d3d3;
   border-radius: 1rem;
   position: relative;
   .post {

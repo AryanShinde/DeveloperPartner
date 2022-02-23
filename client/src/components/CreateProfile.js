@@ -229,6 +229,10 @@ const CreateProfile = () => {
 };
 
 const ProfileStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 4rem;
   h1 {
     color: #4c4c78;
     margin-bottom: 1rem;
