@@ -192,10 +192,16 @@ const GuestProfile = () => {
                 ))}
               </div>
             ) : (
-              <h4>
-                You have not added your github Name{" "}
-                <Link to="/edit-profile">Add here</Link>
-              </h4>
+              <>
+                {user?.user?._id === profiles?.profile?.user?._id ? (
+                  <h4>
+                    You have not added your github Name{" "}
+                    <Link to="/edit-profile">Add here</Link>
+                  </h4>
+                ) : (
+                  <></>
+                )}
+              </>
             )}
           </Main>
         </Profile>
