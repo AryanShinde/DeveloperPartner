@@ -193,5 +193,18 @@ const Experience = styled.div`
       height: 1.2rem;
     }
   }
+  @media (max-width: 768px) {
+    .add-experience {
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
+    .line {
+      margin-bottom: 0.4rem;
+      background-color: #4c4c78;
+      width: 20rem;
+      height: 0.2rem;
+      border-radius: 0rem 0rem 1rem 1rem;
+    }
+  }
 `;
 export default AddExperience;
