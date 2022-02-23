@@ -38,5 +38,5 @@ app.use(
 );
 
 app.listen(process.env.PORT || 5000, () =>
-  console.log(`port running on ${PORT}`)
+  console.log(`port running on ${process.env.PORT || 5000}`)
 );
