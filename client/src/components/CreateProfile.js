@@ -232,6 +232,7 @@ const ProfileStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-left: 4rem;
   h1 {
     color: #4c4c78;
